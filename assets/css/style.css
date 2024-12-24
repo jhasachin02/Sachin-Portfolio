@@ -1,27 +1,5 @@
-/*-----------------------------------*\
-  #style.css
-\*-----------------------------------*/
-
-
-/**
- * copyright 2022 @codewithsadee
- */
-
-
-
-
-
-/*-----------------------------------*\
-  #CUSTOM PROPERTY
-\*-----------------------------------*/
 
 :root {
-
-  /**
-   * colors
-   */
-
-  /* gradient */
 
   --bg-gradient-onyx: linear-gradient(
     to bottom right, 
@@ -111,10 +89,6 @@
 
 }
 
-
-
-
-
 /*-----------------------------------*\
   #RESET
 \*-----------------------------------*/
@@ -156,10 +130,6 @@ input, textarea {
 html { font-family: var(--ff-poppins); }
 
 body { background: var(--smoky-black); }
-
-
-
-
 
 /*-----------------------------------*\
   #REUSED STYLE
@@ -220,6 +190,7 @@ article.active {
   100% { opacity: 1; }
 }
 
+.h1,
 .h2,
 .h3,
 .h4,
@@ -227,6 +198,8 @@ article.active {
   color: var(--white-2);
   text-transform: capitalize;
 }
+
+.h1 { font-size: var(--fs-1); }
 
 .h2 { font-size: var(--fs-1); }
 
@@ -1841,4 +1814,12 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
+}
+/**
+ *   FOOTER
+ */
+
+footer {
+  text-align: center;
+  color: rgb(237, 202, 64);
 }
