@@ -322,7 +322,7 @@ const SinglePagePortfolio: React.FC = () => {
                   onClick={() => {
                     // Replace with your actual resume URL or file path
                     const link = document.createElement('a');
-                    link.href = '/resume.pdf'; // Update this path to your actual resume file
+                    link.href = '/portfolio-/Sachin Resume.pdf'; // Update this path to match GitHub Pages structure
                     link.download = 'Sachin_Jha_Resume.pdf';
                     link.click();
                   }}
@@ -426,7 +426,7 @@ const AboutSection: React.FC = () => {
               >
                 <div className="profile-image-placeholder">
                   <img 
-                    src="/my-avatar.png" 
+                    src="/portfolio-/my-avatar.png" 
                     alt="Sachin Jha - Profile Picture" 
                     className="profile-image"
                     onError={(e) => {
