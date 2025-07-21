@@ -6,22 +6,22 @@ const About = () => {
 
   const services = [
     {
-      icon: '/assets/images/icon-design.svg',
+      icon: '/Portfolio-1/assets/images/icon-design.svg',
       title: 'Web design',
       description: 'Experience cutting-edge design crafted with the highest quality and professional expertise.'
     },
     {
-      icon: '/assets/images/icon-dev.svg',
+      icon: '/Portfolio-1/assets/images/icon-dev.svg',
       title: 'Web development',
       description: 'Specialized in the high-quality, professional development of websites, ensuring every project is executed to the highest standards.'
     },
     {
-      icon: '/assets/images/icon-app.svg',
+      icon: '/Portfolio-1/assets/images/icon-app.svg',
       title: 'Mobile apps',
       description: 'I specialize in the professional development of mobile applications, creating seamless and engaging experiences for both iOS and Android platforms.'
     },
     {
-      icon: '/assets/images/icon-photo.svg',
+      icon: '/Portfolio-1/assets/images/icon-photo.svg',
       title: 'Hackathons / Workshops',
       description: 'I actively organize hackathons and workshops that bring together bright minds to collaborate, learn, and solve real-world challenges.'
     }
@@ -29,12 +29,12 @@ const About = () => {
 
   const testimonials = [
     {
-      avatar: '/assets/images/avatar-1.png',
+      avatar: '/Portfolio-1/assets/images/avatar-1.png',
       name: 'Saurabh Jha',
       text: "Sachin's leadership qualities were evident both inside and outside the classroom. He always took the initiative to organize group projects, and his natural ability to inspire and motivate others ensured the success of our team efforts."
     },
     {
-      avatar: '/assets/images/avatar-2.png',
+      avatar: '/Portfolio-1/assets/images/avatar-2.png',
       name: 'Akshita Mishra',
       text: "I had the pleasure of studying alongside Sachin during our time at Kendriya Vidyalaya. Sachin consistently demonstrated a strong commitment to his studies and displayed exceptional diligence in all his endeavors. His dedication to academic excellence and his ability to collaborate effectively with peers made him stand out among his classmates."
     }
@@ -140,7 +140,7 @@ const About = () => {
                   width="80" 
                 />
               </figure>
-              <img src="/assets/images/icon-quote.svg" alt="quote icon" />
+              <img src="/Portfolio-1/assets/images/icon-quote.svg" alt="quote icon" />
             </div>
 
             <div className="modal-content">

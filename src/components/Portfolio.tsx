@@ -10,55 +10,55 @@ const Portfolio = () => {
     {
       title: 'Amazon Clone',
       category: 'Web development',
-      image: '/assets/images/amazon.jpg',
+      image: '/Portfolio-1/assets/images/amazon.jpg',
       link: 'https://amazon-frontend-clone01.netlify.app/'
     },
     {
       title: 'Edgy',
       category: 'Web development',
-      image: '/assets/images/edgy.png',
+      image: '/Portfolio-1/assets/images/edgy.png',
       link: 'https://edgy-media.vercel.app/'
     },
     {
       title: 'Adventure Website',
       category: 'Web design',
-      image: '/assets/images/adventure.png',
+      image: '/Portfolio-1/assets/images/adventure.png',
       link: 'https://simple-tourism-organization.netlify.app/'
     },
     {
       title: 'Churn Prediction',
       category: 'Web development',
-      image: '/assets/images/churn.jpeg',
+      image: '/Portfolio-1/assets/images/churn.jpeg',
       link: 'https://github.com/jhasachin02/Churn-Prediction'
     },
     {
       title: 'Tic Tac Toe',
       category: 'Applications',
-      image: '/assets/images/tic-tac.png',
+      image: '/Portfolio-1/assets/images/tic-tac.png',
       link: 'https://jhasachin02.github.io/TicTacToe/'
     },
     {
       title: 'Library Management System',
       category: 'Web design',
-      image: '/assets/images/lms.png',
+      image: '/Portfolio-1/assets/images/lms.png',
       link: 'https://github.com/jhasachin02/library-management-system'
     },
     {
       title: 'Spotify',
       category: 'Web development',
-      image: '/assets/images/project2.png',
+      image: '/Portfolio-1/assets/images/project2.png',
       link: 'https://open.spotify.com/'
     },
     {
       title: 'Calculator',
       category: 'Applications',
-      image: '/assets/images/calculator.png',
+      image: '/Portfolio-1/assets/images/calculator.png',
       link: 'https://jhasachin02.github.io/calculator/'
     },
     {
       title: 'Bank Management System',
       category: 'Web development',
-      image: '/assets/images/project1.png',
+      image: '/Portfolio-1/assets/images/project1.png',
       link: 'https://github.com/jhasachin02/BankManagingSystem'
     }
   ]
