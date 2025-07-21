@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <main>
+    <main className="dark-theme">
       <Sidebar />
       
       <div className="main-content">

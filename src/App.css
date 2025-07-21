@@ -135,6 +135,7 @@ html {
   font-family: var(--ff-poppins), sans-serif;
   font-size: var(--fs-5);
   scroll-behavior: smooth;
+  background: var(--smoky-black);
 }
 
 body {
@@ -143,6 +144,19 @@ body {
   font-size: var(--fs-6);
   font-weight: var(--fw-400);
   line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background: var(--smoky-black);
+  min-height: 100vh;
+}
+
+.dark-theme {
+  background: var(--smoky-black) !important;
+  min-height: 100vh;
+  color: var(--white-2);
 }
 
 :focus-visible { outline-color: var(--orange-yellow-crayola); }
