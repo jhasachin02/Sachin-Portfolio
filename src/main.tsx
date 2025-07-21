@@ -1,11 +1,10 @@
-/// <reference path="./types/ionicons.d.ts" />
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import SinglePagePortfolio from './SinglePagePortfolio.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <SinglePagePortfolio />
   </StrictMode>,
 )
