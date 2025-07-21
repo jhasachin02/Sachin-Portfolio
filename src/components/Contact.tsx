@@ -1,41 +1,30 @@
-import { useState } from 'react'
-import type { FormEvent } from 'react'
+import React, { useState } from 'react';
+import { Send } from 'lucide-react';
 
-const Contact = () => {
+const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
     message: ''
-  })
+  });
 
-  const [isFormValid, setIsFormValid] = useState(false)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    const newFormData = { ...formData, [name]: value }
-    setFormData(newFormData)
-    
-    // Check if all fields are filled
-    const isValid = newFormData.fullname.trim() !== '' && 
-                   newFormData.email.trim() !== '' && 
-                   newFormData.message.trim() !== ''
-    setIsFormValid(isValid)
-  }
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    if (isFormValid) {
-      // Handle form submission logic here
-      console.log('Form submitted:', formData)
-      alert('Message sent successfully!')
-      // Reset form
-      setFormData({ fullname: '', email: '', message: '' })
-      setIsFormValid(false)
-    }
-  }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+    // Reset form
+    setFormData({ fullname: '', email: '', message: '' });
+  };
 
   return (
-    <article className="contact">
+    <article className="contact" data-page="contact">
       <header>
         <h2 className="h2 article-title">Contact</h2>
       </header>
@@ -43,50 +32,46 @@ const Contact = () => {
       <section className="contact-form">
         <h3 className="h3 form-title">Contact Form</h3>
 
-        <form className="form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form" data-form>
           <div className="input-wrapper">
-            <input 
-              type="text" 
-              name="fullname" 
-              className="form-input" 
-              placeholder="Full name" 
-              required 
+            <input
+              type="text"
+              name="fullname"
+              className="form-input"
+              placeholder="Full name"
               value={formData.fullname}
-              onChange={handleInputChange}
+              onChange={handleChange}
+              required
             />
 
-            <input 
-              type="email" 
-              name="email" 
-              className="form-input" 
-              placeholder="Email address" 
-              required 
+            <input
+              type="email"
+              name="email"
+              className="form-input"
+              placeholder="Email address"
               value={formData.email}
-              onChange={handleInputChange}
+              onChange={handleChange}
+              required
             />
           </div>
 
-          <textarea 
-            name="message" 
-            className="form-input" 
-            placeholder="Your Message" 
-            required 
+          <textarea
+            name="message"
+            className="form-input"
+            placeholder="Your Message"
             value={formData.message}
-            onChange={handleInputChange}
+            onChange={handleChange}
+            required
           ></textarea>
 
-          <button 
-            className="form-btn" 
-            type="submit" 
-            disabled={!isFormValid}
-          >
-            <ion-icon name="paper-plane"></ion-icon>
+          <button className="form-btn" type="submit">
+            <Send size={16} />
             <span>Send Message</span>
           </button>
         </form>
       </section>
     </article>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

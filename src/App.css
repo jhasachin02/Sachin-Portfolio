@@ -159,6 +159,41 @@ body {
   color: var(--white-2);
 }
 
+/* Avatar placeholders */
+.avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: var(--bg-gradient-onyx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--jet);
+}
+
+.avatar-initial {
+  font-size: 28px;
+  font-weight: var(--fw-500);
+  color: var(--orange-yellow-crayola);
+}
+
+.testimonial-avatar-placeholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background: var(--bg-gradient-onyx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--jet);
+}
+
+.testimonial-avatar-initial {
+  font-size: 20px;
+  font-weight: var(--fw-500);
+  color: var(--orange-yellow-crayola);
+}
+
 :focus-visible { outline-color: var(--orange-yellow-crayola); }
 
 /*-----------------------------------*\

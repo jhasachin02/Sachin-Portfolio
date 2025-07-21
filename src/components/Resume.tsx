@@ -1,63 +1,58 @@
-const Resume = () => {
+import React from 'react';
+import { BookOpen, Code2, Database, Palette, Globe, Smartphone } from 'lucide-react';
+
+const Resume: React.FC = () => {
   const education = [
     {
-      title: 'JSS Academy of Technical Education Noida',
-      period: '2021 — 2025',
-      description: "I'm Pursuing Bachelor of Technology at JSS Academy of Technical Education Noida."
+      title: 'Bachelor of Technology in Computer Science',
+      institution: 'Darbhanga College of Engineering',
+      period: '2020 - 2024',
+      description: 'Specialized in software development, data structures, algorithms, and modern web technologies.'
     },
     {
-      title: 'Kendriya Vidyalaya',
-      period: '2019 — 2021',
-      description: 'I completed my class 12th from Kendriya Vidyalaya Kamla Nehru Nagar Ghaziabad Uttar Pradesh. I got 94.5% in my boards in class 12th.'
-    },
-    {
-      title: 'Kendriya Vidyalaya',
-      period: '2009 — 2019',
-      description: 'I completed my class 10th from Kendriya Vidyalaya Kamla Nehru Nagar Ghaziabad Uttar Pradesh. I got 91.1% in my boards in class 10th.'
+      title: 'Higher Secondary Education',
+      institution: 'Kendriya Vidyalaya',
+      period: '2018 - 2020',
+      description: 'Focused on Mathematics, Physics, and Computer Science with distinction.'
     }
-  ]
+  ];
 
   const experience = [
     {
-      title: 'Chair Person',
-      period: 'MAY 2024 — Present',
-      description: 'As a Chairperson at IEEE JSSATEN, my leadership extends to steering a dynamic team towards innovation in technology, fostering an environment where cutting-edge ideas blossom.'
+      title: 'Frontend Developer',
+      company: 'Freelance',
+      period: '2023 - Present',
+      description: 'Developing responsive web applications using React, TypeScript, and modern CSS frameworks. Built multiple client projects with focus on performance and user experience.'
     },
     {
-      title: 'Core Lead',
-      period: 'MAY 2024 — Present',
-      description: 'As the Core Lead at StarkSeek, I play a pivotal role in shaping our initiatives, driving innovation, and fostering collaboration between academia and industry to create opportunities for tech enthusiasts.'
-    },
-    {
-      title: 'App Developer',
-      period: 'JAN 2024 — MAY 2024',
-      description: "Developed and implemented innovative applications as an App Developer at IEEE Yesist'24, enhancing user experience and optimizing performance for a global audience in a highly collaborative and dynamic environment."
-    },
-    {
-      title: 'SDE Intern',
-      period: 'Dec 2023 — June 2024',
-      description: 'As an SDE Intern at Nimbus Adcom Pvt Ltd. I had the opportunity to work on innovative projects, applying modern design principles and cutting-edge technologies to boost user engagement and client satisfaction. I managed full-stack development, contributing to both the front-end and back-end, ensuring seamless project delivery and impactful results.'
+      title: 'Software Development Intern',
+      company: 'Tech Startup',
+      period: '2023 - 2023',
+      description: 'Worked on full-stack development projects using React.js and Node.js. Contributed to the development of web applications and gained experience in agile methodologies.'
     }
-  ]
+  ];
 
   const skills = [
-    { name: 'Web design, App Development, Graphic design', percentage: 90 },
-    { name: 'DSA', percentage: 70 },
-    { name: 'C++', percentage: 90 },
-    { name: 'Java', percentage: 50 }
-  ]
+    { name: 'HTML/CSS', level: 90, icon: <Globe size={20} /> },
+    { name: 'JavaScript', level: 85, icon: <Code2 size={20} /> },
+    { name: 'React.js', level: 90, icon: <Code2 size={20} /> },
+    { name: 'TypeScript', level: 80, icon: <Code2 size={20} /> },
+    { name: 'Node.js', level: 75, icon: <Database size={20} /> },
+    { name: 'Python', level: 80, icon: <Code2 size={20} /> },
+    { name: 'UI/UX Design', level: 70, icon: <Palette size={20} /> },
+    { name: 'Mobile Development', level: 65, icon: <Smartphone size={20} /> }
+  ];
 
   return (
-    <article className="resume">
+    <article className="resume" data-page="resume">
       <header>
         <h2 className="h2 article-title">Resume</h2>
       </header>
 
-      {/* Education Section */}
       <section className="timeline">
         <div className="title-wrapper">
           <div className="icon-box">
-            <ion-icon name="book-outline"></ion-icon>
+            <BookOpen size={24} />
           </div>
           <h3 className="h3">Education</h3>
         </div>
@@ -73,11 +68,10 @@ const Resume = () => {
         </ol>
       </section>
 
-      {/* Experience Section */}
       <section className="timeline">
         <div className="title-wrapper">
           <div className="icon-box">
-            <ion-icon name="book-outline"></ion-icon>
+            <BookOpen size={24} />
           </div>
           <h3 className="h3">Experience</h3>
         </div>
@@ -93,7 +87,6 @@ const Resume = () => {
         </ol>
       </section>
 
-      {/* Skills Section */}
       <section className="skill">
         <h3 className="h3 skills-title">My skills</h3>
 
@@ -102,36 +95,21 @@ const Resume = () => {
             <li key={index} className="skills-item">
               <div className="title-wrapper">
                 <h5 className="h5">{skill.name}</h5>
-                <data value={skill.percentage}>{skill.percentage}%</data>
+                <data value={skill.level}>{skill.level}%</data>
               </div>
 
               <div className="skill-progress-bg">
                 <div 
                   className="skill-progress-fill" 
-                  style={{ width: `${skill.percentage}%` }}
+                  style={{ width: `${skill.level}%` }}
                 ></div>
               </div>
             </li>
           ))}
         </ul>
       </section>
-
-      {/* Download Resume Section */}
-      <section className="Download Resume">
-        <div className="Download Resume">
-          <li>
-            <a 
-              href="https://drive.google.com/file/d/1TP_guYeSsV9pSaLflqkcriPObBXTizmE/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download Resume
-            </a>
-          </li>
-        </div>
-      </section>
     </article>
-  )
-}
+  );
+};
 
-export default Resume
+export default Resume;
