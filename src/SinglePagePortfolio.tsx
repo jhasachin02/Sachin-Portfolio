@@ -17,7 +17,12 @@ import {
   FaTwitter,
   FaEye,
   FaDownload,
-  FaUser
+  FaUser,
+  FaCameraRetro,
+  FaMobileAlt,
+  FaCode,
+  FaPencilRuler,
+  FaBriefcase
 } from 'react-icons/fa';
 import { 
   HiOutlineMail
@@ -364,6 +369,30 @@ const SinglePagePortfolio: React.FC = () => {
 const AboutSection: React.FC = () => {
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: false });
 
+  // Add service data for 'What I'm doing'
+  const services = [
+    {
+      icon: <FaPencilRuler />,
+      title: 'Web design',
+      description: 'The most modern and high-quality design made at a professional level.'
+    },
+    {
+      icon: <FaCode />,
+      title: 'Web development',
+      description: 'High-quality development of sites at the professional level.'
+    },
+    {
+      icon: <FaMobileAlt />,
+      title: 'Mobile apps',
+      description: 'Professional development of applications for iOS and Android.'
+    },
+    {
+      icon: <FaCameraRetro />,
+      title: 'Photography',
+      description: 'I make high-quality photos of any category at a professional level.'
+    }
+  ];
+
   return (
     <section id="about" className="about-section" ref={ref}>
       <div className="container">
@@ -375,21 +404,6 @@ const AboutSection: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="about-header">
-              <motion.div 
-                className="about-icon-wrapper"
-                animate={{ 
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.05, 1]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <FaUser className="about-main-icon" />
-              </motion.div>
-              
               <div className="about-title-section">
                 <motion.h2 
                   className="about-title-main"
@@ -536,6 +550,41 @@ const AboutSection: React.FC = () => {
                 </motion.blockquote>
               </motion.div>
             </motion.div>
+
+            {/* What I'm doing subsection */}
+            <motion.div
+              className="about-services"
+              initial={{ opacity: 0, y: 40 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.7 }}
+            >
+              <motion.h3 
+                className="about-services-title about-services-title-animated"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                What I'm doing
+              </motion.h3>
+              <div className="about-services-grid">
+                {services.map((service, idx) => (
+                  <motion.div
+                    className="about-service-card"
+                    key={service.title}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.8 + idx * 0.1 }}
+                    whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(79,172,254,0.15)' }}
+                  >
+                    <div className="about-service-icon">{service.icon}</div>
+                    <div className="about-service-content">
+                      <h4 className="about-service-title">{service.title}</h4>
+                      <p className="about-service-desc">{service.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -627,21 +676,6 @@ const SkillsSection: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="skills-header">
-              <motion.div 
-                className="skills-icon-wrapper"
-                animate={{ 
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.05, 1]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <span className="skills-main-icon">⚡</span>
-              </motion.div>
-              
               <div className="skills-title-section">
                 <motion.h2 
                   className="skills-title-main"
@@ -771,19 +805,6 @@ const ProjectsSection: React.FC = () => {
       liveLink: '#',
       codeLink: '#',
       category: 'Web Development'
-    },
-    {
-      title: 'Adobe Systems Internship',
-      description: 'Developed high-performance web components and optimized user interfaces during summer internship. Worked on scalable frontend solutions and improved user experience metrics.',
-      tech: [
-        { name: 'React', icon: <FaReact /> },
-        { name: 'TypeScript', icon: <SiTypescript /> },
-        { name: 'Node.js', icon: <FaNodeJs /> },
-        { name: 'Adobe XD', icon: <FaFigma /> }
-      ],
-      liveLink: '#',
-      codeLink: '#',
-      category: 'Internship'
     }
   ];
 
@@ -798,21 +819,6 @@ const ProjectsSection: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="projects-header">
-              <motion.div 
-                className="projects-icon-wrapper"
-                animate={{ 
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.05, 1]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <span className="projects-main-icon">🚀</span>
-              </motion.div>
-              
               <div className="projects-title-section">
                 <motion.h2 
                   className="projects-title-main"
@@ -990,21 +996,6 @@ const ExperienceSection: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="experience-header">
-              <motion.div 
-                className="experience-icon-wrapper"
-                animate={{ 
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.05, 1]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <FaUser className="experience-main-icon" />
-              </motion.div>
-              
               <div className="experience-title-section">
                 <motion.h2 
                   className="experience-title-main"
@@ -1039,18 +1030,6 @@ const ExperienceSection: React.FC = () => {
                   }}
                 >
                   <div className="timeline-marker-professional">
-                    <motion.div 
-                      className="experience-pulse"
-                      animate={{ 
-                        scale: [1, 1.3, 1],
-                        opacity: [0.7, 0.3, 0.7]
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
                   </div>
                   
                   <div className="timeline-content-professional">
