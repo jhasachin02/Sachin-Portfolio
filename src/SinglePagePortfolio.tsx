@@ -22,10 +22,21 @@ import {
   FaMobileAlt,
   FaCode,
   FaPencilRuler,
-  FaBriefcase
+  FaBriefcase,
+  FaHome,
+  FaUserTie,
+  FaLaptopCode,
+  FaProjectDiagram,
+  FaHandshake
 } from 'react-icons/fa';
 import { 
-  HiOutlineMail
+  HiOutlineMail,
+  HiHome,
+  HiUser,
+  HiCode,
+  HiCollection,
+  HiBriefcase,
+  HiMail
 } from 'react-icons/hi';
 import { 
   SiTypescript, 
@@ -46,6 +57,7 @@ const SinglePagePortfolio: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  // Remove isBottomNavOpen state and expand/collapse logic
   const [heroRef, heroInView] = useInView({ threshold: 0.3, triggerOnce: false });
   
   // Navigation items
@@ -92,7 +104,8 @@ const SinglePagePortfolio: React.FC = () => {
   return (
     <div className="single-page-portfolio">
       {/* Navigation */}
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+      {/* Desktop Navigation (unchanged) */}
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''} desktop-navbar`}>
         <div className="nav-container">
           <motion.div
             className="nav-logo"
@@ -103,8 +116,6 @@ const SinglePagePortfolio: React.FC = () => {
           >
             <span className="logo-text">Sachin</span>
           </motion.div>
-
-          {/* Desktop Navigation */}
           <div className="nav-menu desktop">
             {navItems.map((item, index) => (
               <motion.button
@@ -121,57 +132,32 @@ const SinglePagePortfolio: React.FC = () => {
               </motion.button>
             ))}
           </div>
-
-          {/* Mobile Menu Toggle */}
-          <motion.button
-            className="menu-toggle"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </motion.button>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              className="mobile-menu-backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setIsMenuOpen(false)}
-            />
-            
-            {/* Mobile Menu */}
-            <motion.div
-              className="nav-menu-mobile"
-              initial={{ opacity: 0, scale: 0.9, y: -20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: -20 }}
-              transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
+      </nav>
+      {/* Mobile/Tablet Bottom Navigation - professional icons */}
+      <nav className="bottom-navbar mobile-only">
+        <div className="bottom-nav-bar">
+          {navItems.map((item, index) => (
+            <button
+              key={item.id}
+              className={`bottom-nav-icon${activeSection === item.id ? ' active' : ''}`}
+              onClick={() => scrollToSection(item.id)}
+              tabIndex={0}
+              title={item.label}
             >
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.id}
-                  className={`nav-link-mobile ${activeSection === item.id ? 'active' : ''}`}
-                  onClick={() => scrollToSection(item.id)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
-            </motion.div>
-          </>
-        )}
+              <div className="nav-icon-wrapper">
+                {item.id === 'home' && <HiHome className="nav-icon" />}
+                {item.id === 'about' && <HiUser className="nav-icon" />}
+                {item.id === 'skills' && <HiCode className="nav-icon" />}
+                {item.id === 'projects' && <HiCollection className="nav-icon" />}
+                {item.id === 'experience' && <HiBriefcase className="nav-icon" />}
+                {item.id === 'contact' && <HiMail className="nav-icon" />}
+                <span className="nav-label">{item.label}</span>
+                <div className="nav-indicator"></div>
+              </div>
+            </button>
+          ))}
+        </div>
       </nav>
 
       {/* Hero Section */}
