@@ -41,59 +41,6 @@ import {
 import { VscCode } from 'react-icons/vsc';
 import './styles/singlePage.css';
 
-// Tech Icon Component
-interface TechIconProps {
-  name: string;
-  icon: React.ReactNode;
-  delay?: number;
-}
-
-const TechIcon: React.FC<TechIconProps> = ({ name, icon, delay = 0 }) => {
-  return (
-    <motion.div
-      className="tech-icon-item"
-      initial={{ opacity: 0, scale: 0.5, rotateY: -180 }}
-      whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-      transition={{ duration: 0.6, delay }}
-      whileHover={{ 
-        scale: 1.1, 
-        rotateY: 360,
-        transition: { duration: 0.4 }
-      }}
-      viewport={{ once: false, threshold: 0.3 }}
-    >
-      <div className="tech-icon-wrapper">
-        {icon}
-      </div>
-      <span className="tech-name">{name}</span>
-    </motion.div>
-  );
-};
-
-// Tech stack data with icons
-const techStackData = {
-  'JavaScript': <FaJs />,
-  'TypeScript': <SiTypescript />,
-  'Python': <FaPython />,
-  'Java': <FaJs />, // Using JS icon as placeholder for Java
-  'C++': <SiCplusplus />,
-  'React': <FaReact />,
-  'Next.js': <SiNextdotjs />,
-  'HTML5': <FaHtml5 />,
-  'CSS3': <FaCss3Alt />,
-  'Tailwind CSS': <SiTailwindcss />,
-  'Node.js': <FaNodeJs />,
-  'Express.js': <SiExpress />,
-  'MongoDB': <SiMongodb />,
-  'PostgreSQL': <SiPostgresql />,
-  'Git': <FaGitAlt />,
-  'GitHub': <FaGithub />,
-  'VS Code': <VscCode />,
-  'Figma': <FaFigma />,
-  'Vercel': <SiVercel />,
-  'Netlify': <SiNetlify />
-};
-
 const SinglePagePortfolio: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -390,6 +337,16 @@ const AboutSection: React.FC = () => {
       icon: <FaCameraRetro />,
       title: 'Photography',
       description: 'I make high-quality photos of any category at a professional level.'
+    },
+    {
+      icon: <FaBriefcase />,
+      title: 'Hackathons mentoring and judging',
+      description: 'Mentoring teams and judging innovative projects in hackathons and tech competitions.'
+    },
+    {
+      icon: <FaUser />,
+      title: 'Building AI agents',
+      description: 'Creating intelligent AI agents and automation solutions using cutting-edge technologies.'
     }
   ];
 
@@ -864,10 +821,10 @@ const ProjectsSection: React.FC = () => {
                     <div className="project-header-professional">
                       <h3 className="project-title-professional">{project.title}</h3>
                       <div className="project-actions">
-                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link-btn">
+                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link-btn" title="View Live Project">
                           <FaEye />
                         </a>
-                        <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="project-link-btn">
+                        <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="project-link-btn" title="View Source Code">
                           <FaGithub />
                         </a>
                       </div>
@@ -908,10 +865,10 @@ const ProjectsSection: React.FC = () => {
                         <span className="mini-project-category">{project.category}</span>
                       </div>
                       <div className="mini-project-actions">
-                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="mini-project-link">
+                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="mini-project-link" title="View Live Project">
                           <FaEye />
                         </a>
-                        <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="mini-project-link">
+                        <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="mini-project-link" title="View Source Code">
                           <FaGithub />
                         </a>
                       </div>
@@ -941,7 +898,18 @@ const ProjectsSection: React.FC = () => {
 // Experience Section Component
 const ExperienceSection: React.FC = () => {
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: false });
+  const [expandedLeadership, setExpandedLeadership] = useState<number | null>(null);
+  const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
 
+  const toggleLeadershipExpansion = (index: number) => {
+    setExpandedLeadership(expandedLeadership === index ? null : index);
+  };
+
+  const toggleExperienceExpansion = (index: number) => {
+    setExpandedExperience(expandedExperience === index ? null : index);
+  };
+
+  // Simplified for debugging
   const experiences = [
     {
       title: "Software Developer Internship",
@@ -984,98 +952,177 @@ const ExperienceSection: React.FC = () => {
     }
   ];
 
+  const leadershipPositions = [
+    {
+      title: "Mentor – STEM Education Program",
+      company: "iExplore Foundation (Innovators for Tomorrow)",
+      period: "July 2025 – Present",
+      location: "Remote",
+      description: "Mentoring school students across India in STEM innovation, guiding them in developing prototypes and applying creative problem-solving and supporting students in exploring real-world tech applications and building confidence in future-ready skills.",
+      achievements: [
+        "Mentoring school students across India in STEM innovation, guiding them in developing prototypes and applying creative problem-solving",
+        "Supporting students in exploring real-world tech applications and building confidence in future-ready skills"
+      ],
+      technologies: ["STEM Education", "Mentoring", "Innovation", "Problem-solving", "Prototype Development"]
+    },
+    {
+      title: "Chairperson",
+      company: "IEEE JSSATEN Student Branch",
+      period: "May 2024 – June 2025",
+      location: "Noida, Uttar Pradesh",
+      description: "Led student branch activities, organized technical events, and fostered a culture of learning and collaboration within the tech community.",
+      achievements: [
+        "Led student branch activities and organized technical events",
+        "Fostered a culture of learning and collaboration within the tech community"
+      ],
+      technologies: ["Leadership", "Event Management", "Community Building", "Technical Events", "IEEE"]
+    },
+    {
+      title: "Core Lead",
+      company: "StarkSeek",
+      period: "July 2024 – Present",
+      location: "Noida, Uttar Pradesh",
+      description: "Driving community engagement, leading technical projects, and mentoring aspiring developers as part of a fast-growing tech platform.",
+      achievements: [
+        "Driving community engagement and leading technical projects",
+        "Mentoring aspiring developers as part of a fast-growing tech platform"
+      ],
+      technologies: ["Community Management", "Technical Leadership", "Mentoring", "Project Management", "Platform Development"]
+    }
+  ];
+
   return (
     <section id="experience" className="experience-section">
       <div className="container">
         <div className="experience-main-content">
-          <motion.div
-            ref={ref}
-            className="experience-unified-box"
-            initial={{ opacity: 0, y: 50 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="experience-unified-box">
             <div className="experience-header">
               <div className="experience-title-section">
-                <motion.h2 
-                  className="experience-title-main"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
+                <h2 className="experience-title-main">
                   Professional Experience
-                </motion.h2>
-                <motion.p 
-                  className="experience-subtitle"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
+                </h2>
+                <p className="experience-subtitle">
                   Building impactful solutions across diverse domains
-                </motion.p>
+                </p>
+                <p className="experience-subtitle mobile-only">👆 Tap on any experience to expand details</p>
               </div>
             </div>
 
+            {/* Professional Experience Timeline */}
             <div className="timeline-professional">
               {experiences.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  className="timeline-item-professional"
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                  whileHover={{ 
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <div className="timeline-marker-professional">
-                  </div>
-                  
-                  <div className="timeline-content-professional">
+                <div key={index} className="timeline-item-professional">
+                  <div className="timeline-marker-professional"></div>
+                  <div 
+                    className={`timeline-content-professional ${expandedExperience === index ? 'expanded' : ''}`}
+                    onClick={() => toggleExperienceExpansion(index)}
+                  >
                     <div className="timeline-header-professional">
                       <div className="job-info">
                         <h3 className="job-title-professional">{exp.title}</h3>
                         <h4 className="company-name-professional">{exp.company}</h4>
                         {exp.location && <p className="job-location-professional">{exp.location}</p>}
                       </div>
-                      <span className="job-period-professional">{exp.period}</span>
+                      <div className="job-header-right">
+                        <span className="job-period-professional">{exp.period}</span>
+                        <span className="expand-indicator-experience">
+                          {expandedExperience === index ? '−' : '+'}
+                        </span>
+                      </div>
                     </div>
                     
-                    <p className="job-description-professional">{exp.description}</p>
+                    {/* Always show description on desktop, conditionally on mobile */}
+                    <p className={`job-description-professional ${expandedExperience === index ? 'show-mobile' : ''}`}>
+                      {exp.description}
+                    </p>
                     
-                    {exp.achievements && (
-                      <div className="job-achievements-professional">
-                        <ul className="achievements-list-professional">
-                          {exp.achievements.map((achievement, achievementIndex) => (
-                            <li key={achievementIndex} className="achievement-bullet-professional">
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
+                    {/* Expandable content */}
+                    <div className={`experience-expandable-content ${expandedExperience === index ? 'expanded' : ''}`}>
+                      {exp.achievements && (
+                        <div className="job-achievements-professional">
+                          <ul className="achievements-list-professional">
+                            {exp.achievements.map((achievement, achievementIndex) => (
+                              <li key={achievementIndex} className="achievement-bullet-professional">
+                                {achievement}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      
+                      <div className="experience-tech-stack">
+                        {exp.technologies.map((tech, techIndex) => (
+                          <span key={techIndex} className="experience-tech-tag">
+                            {tech}
+                          </span>
+                        ))}
                       </div>
-                    )}
-                    
-                    <div className="experience-tech-stack">
-                      {exp.technologies.map((tech, techIndex) => (
-                        <motion.span
-                          key={techIndex}
-                          className="experience-tech-tag"
-                          whileHover={{ 
-                            scale: 1.05,
-                            backgroundColor: "rgba(37, 99, 235, 0.2)"
-                          }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          {tech}
-                        </motion.span>
-                      ))}
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+
+            {/* Leadership Positions Section */}
+            <div className="leadership-section">
+              <h3 className="leadership-title">Leadership Positions</h3>
+              <p className="leadership-subtitle mobile-only">👆 Tap on any position to expand details</p>
+              
+              <div className="timeline-leadership">
+                {leadershipPositions.map((position, index) => (
+                  <div key={index} className="timeline-item-leadership">
+                    <div className="timeline-marker-leadership"></div>
+                    <div 
+                      className={`timeline-content-leadership ${expandedLeadership === index ? 'expanded' : ''}`}
+                      onClick={() => toggleLeadershipExpansion(index)}
+                    >
+                      <div className="timeline-header-leadership">
+                        <div className="position-info">
+                          <h3 className="position-title">{position.title}</h3>
+                          <h4 className="organization-name">{position.company}</h4>
+                          {position.location && <p className="position-location">{position.location}</p>}
+                        </div>
+                        <div className="position-header-right">
+                          <span className="position-period">{position.period}</span>
+                          <span className="expand-indicator">
+                            {expandedLeadership === index ? '−' : '+'}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      {/* Always show description on desktop, conditionally on mobile */}
+                      <p className={`position-description ${expandedLeadership === index ? 'show-mobile' : ''}`}>
+                        {position.description}
+                      </p>
+                      
+                      {/* Expandable content */}
+                      <div className={`position-expandable-content ${expandedLeadership === index ? 'expanded' : ''}`}>
+                        {position.achievements && (
+                          <div className="position-achievements">
+                            <ul className="achievements-list-leadership">
+                              {position.achievements.map((achievement, achievementIndex) => (
+                                <li key={achievementIndex} className="achievement-bullet-leadership">
+                                  {achievement}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        <div className="leadership-tech-stack">
+                          {position.technologies.map((tech, techIndex) => (
+                            <span key={techIndex} className="leadership-tech-tag">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
