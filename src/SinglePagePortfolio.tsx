@@ -1238,7 +1238,7 @@ const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
-    console.log('Form submitted:', formData);
+    // Form data would be sent to backend/email service in production
     alert('Thank you for reaching out! I\'ll get back to you within 24 hours.');
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
