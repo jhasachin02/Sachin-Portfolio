@@ -55,7 +55,7 @@ const TechIcon: React.FC<TechIconProps> = ({ name, icon, delay = 0 }) => {
         rotateY: 360,
         transition: { duration: 0.4 }
       }}
-      viewport={{ once: true }}
+      viewport={{ once: false, threshold: 0.3 }}
     >
       <div className="tech-icon-wrapper">
         {icon}
@@ -93,6 +93,8 @@ const SinglePagePortfolio: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  const [heroRef, heroInView] = useInView({ threshold: 0.3, triggerOnce: false });
   
   // Navigation items
   const navItems = [
@@ -221,20 +223,20 @@ const SinglePagePortfolio: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="hero-section">
+      <section id="home" className="hero-section" ref={heroRef}>
         <div className="container">
           <div className="hero-main-content">
             {/* Centered Content */}
             <motion.div
               className="hero-content"
               initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <motion.div
                 className="hero-greeting"
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 <span className="greeting-text">Hello, I'm</span>
@@ -243,14 +245,14 @@ const SinglePagePortfolio: React.FC = () => {
               <motion.h1
                 className="hero-title"
                 initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
                 <span className="hero-name">Sachin Jha</span>
                 <motion.div
                   className="title-underline"
                   initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
+                  animate={heroInView ? { width: "100%" } : { width: 0 }}
                   transition={{ duration: 1.2, delay: 1.2 }}
                 />
               </motion.h1>
@@ -258,7 +260,7 @@ const SinglePagePortfolio: React.FC = () => {
               <motion.div
                 className="hero-subtitle-container"
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
               >
                 <motion.span 
@@ -280,7 +282,7 @@ const SinglePagePortfolio: React.FC = () => {
               <motion.div
                 className="hero-cta-section"
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.8, delay: 0.9 }}
               >
                 <motion.button
@@ -319,13 +321,7 @@ const SinglePagePortfolio: React.FC = () => {
 
                 <motion.button
                   className="btn btn-secondary-glass"
-                  onClick={() => {
-                    // Replace with your actual resume URL or file path
-                    const link = document.createElement('a');
-                    link.href = './Sachin Resume.pdf'; // Update this path to relative path
-                    link.download = 'Sachin_Jha_Resume.pdf';
-                    link.click();
-                  }}
+                  onClick={() => setIsResumeModalOpen(true)}
                   whileHover={{ 
                     scale: 1.05,
                     backgroundColor: "rgba(34, 197, 94, 0.1)",
@@ -335,7 +331,7 @@ const SinglePagePortfolio: React.FC = () => {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <span className="btn-text">Resume</span>
-                  <div className="btn-icon"><FaDownload /></div>
+                  <div className="btn-icon"><FaEye /></div>
                 </motion.button>
               </motion.div>
             </motion.div>
@@ -357,13 +353,16 @@ const SinglePagePortfolio: React.FC = () => {
 
       {/* Contact Section */}
       <ContactSection />
+
+      {/* Resume Modal */}
+      {isResumeModalOpen && <ResumeModal onClose={() => setIsResumeModalOpen(false)} />}
     </div>
   );
 };
 
 // About Section Component
 const AboutSection: React.FC = () => {
-  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: false });
 
   return (
     <section id="about" className="about-section" ref={ref}>
@@ -441,11 +440,6 @@ const AboutSection: React.FC = () => {
                     <FaUser size={60} />
                   </div>
                 </div>
-                <motion.div 
-                  className="profile-ring"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                />
                 
                 {/* Social Links Section */}
                 <motion.div 
@@ -551,7 +545,7 @@ const AboutSection: React.FC = () => {
 
 // Skills Section Component
 const SkillsSection: React.FC = () => {
-  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: false });
 
   const skillCategories = [
     {
@@ -716,7 +710,7 @@ const SkillsSection: React.FC = () => {
 
 // Projects Section Component (Updated)
 const ProjectsSection: React.FC = () => {
-  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: false });
 
   const featuredProjects = [
     {
@@ -940,7 +934,7 @@ const ProjectsSection: React.FC = () => {
 
 // Experience Section Component
 const ExperienceSection: React.FC = () => {
-  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: false });
 
   const experiences = [
     {
@@ -1109,9 +1103,60 @@ const ExperienceSection: React.FC = () => {
   );
 };
 
+// Resume Modal Component
+interface ResumeModalProps {
+  onClose: () => void;
+}
+
+const ResumeModal: React.FC<ResumeModalProps> = ({ onClose }) => {
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = './Sachin Resume.pdf';
+    link.download = 'Sachin_Jha_Resume.pdf';
+    link.click();
+  };
+
+  return (
+    <motion.div
+      className="resume-modal-backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="resume-modal-content"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.3 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <motion.button
+          className="resume-download-btn"
+          onClick={handleDownload}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          title="Download Resume"
+        >
+          <FaDownload />
+          <span>Download</span>
+        </motion.button>
+
+        <iframe
+          src="./Sachin Resume.pdf"
+          className="resume-preview-iframe"
+          title="Sachin Jha Resume Preview"
+        />
+      </motion.div>
+    </motion.div>
+  );
+};
+
 // Contact Section Component
 const ContactSection: React.FC = () => {
-  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: false });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
