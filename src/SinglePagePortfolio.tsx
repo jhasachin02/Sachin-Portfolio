@@ -1109,12 +1109,34 @@ interface ResumeModalProps {
 }
 
 const ResumeModal: React.FC<ResumeModalProps> = ({ onClose }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = './Sachin Resume.pdf';
     link.download = 'Sachin_Jha_Resume.pdf';
     link.click();
   };
+
+  const handleViewInNewTab = () => {
+    window.open('./Sachin Resume.pdf', '_blank', 'noopener,noreferrer');
+  };
+
+  const handleIframeLoad = () => {
+    setIsLoading(false);
+  };
+
+  const handleIframeError = () => {
+    setIsLoading(false);
+    setHasError(true);
+  };
+
+  // Check if device is mobile
+  const isMobile = window.innerWidth <= 768;
+
+  // On mobile, show fallback with view and download options
+  const showFallback = isMobile || hasError;
 
   return (
     <motion.div
@@ -1134,21 +1156,63 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <motion.button
-          className="resume-download-btn"
-          onClick={handleDownload}
+          className="resume-close-btn"
+          onClick={onClose}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          title="Download Resume"
+          title="Close Resume"
         >
-          <FaDownload />
-          <span>Download</span>
+          ×
         </motion.button>
 
-        <iframe
-          src="./Sachin Resume.pdf"
-          className="resume-preview-iframe"
-          title="Sachin Jha Resume Preview"
-        />
+        {/* Show fallback on mobile devices */}
+        {showFallback ? (
+          <div className="resume-fallback">
+            <div className="fallback-content">
+              <div className="resume-icon">📄</div>
+              <h3>Sachin Jha - Resume</h3>
+              <p>Choose how you'd like to view the resume:</p>
+              <div className="fallback-buttons">
+                <motion.button
+                  className="btn-fallback-view"
+                  onClick={handleViewInNewTab}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaEye />
+                  <span>View PDF</span>
+                </motion.button>
+                <motion.button
+                  className="btn-fallback-download"
+                  onClick={handleDownload}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaDownload />
+                  <span>Download PDF</span>
+                </motion.button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Loading indicator */}
+            {isLoading && (
+              <div className="resume-loading">
+                <div className="loading-spinner"></div>
+                <p>Loading Resume...</p>
+              </div>
+            )}
+
+            <iframe
+              src="./Sachin Resume.pdf#toolbar=1&navpanes=0&scrollbar=1&page=1&zoom=FitH"
+              className={`resume-preview-iframe ${isLoading ? 'hidden' : ''}`}
+              title="Sachin Jha Resume Preview"
+              onLoad={handleIframeLoad}
+              onError={handleIframeError}
+            />
+          </>
+        )}
       </motion.div>
     </motion.div>
   );
