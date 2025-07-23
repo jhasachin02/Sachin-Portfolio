@@ -73,12 +73,15 @@ const SinglePagePortfolio: React.FC = () => {
   ];
 
   // Smooth scroll to section
+  // Fix: On mobile, wait for menu to close before scrolling
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
     setIsMenuOpen(false);
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 200); // Wait for menu animation/close
   };
 
   // Update active section based on scroll
@@ -1787,10 +1790,29 @@ const ContactSection: React.FC = () => {
                     </div>
                     <div className="contact-info-content">
                       <h4>Email</h4>
-                      <a href="mailto:sachin.jha02@gmail.com" className="contact-link">
-                        sachin.jha02@gmail.com
+                      <a href="mailto:jhasachin1307@gmail.com" className="contact-link">
+                        jhasachin1307@gmail.com
                       </a>
                       <span className="contact-info-extra">Quick response guaranteed</span>
+                    </div>
+                  </motion.div>
+
+                  <motion.div 
+                    className="contact-info-item"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.95 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
+                    <div className="contact-icon-wrapper">
+                      <HiPhone className="contact-icon" />
+                    </div>
+                    <div className="contact-info-content">
+                      <h4>Contact</h4>
+                      <a href="tel:+919650411734" className="contact-link">
+                        +91 9650411734
+                      </a>
+                      <span className="contact-info-extra">Available on WhatsApp</span>
                     </div>
                   </motion.div>
                   
