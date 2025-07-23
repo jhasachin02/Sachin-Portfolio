@@ -1286,22 +1286,22 @@ const ExperienceSection: React.FC = () => {
     },
     {
       title: "Community Events",
-      category: "Networking & Conferences",
+      category: "Speaker Sessions & Conferences",
       events: [
         {
-          title: "Blockchain Innovation Meet",
-          image: "🔗",
-          category: "Conference"
-        },
-        {
-          title: "Developer Community Meetup",
-          image: "👥",
-          category: "Networking"
-        },
-        {
-          title: "Tech Leadership Forum",
-          image: "🎤",
-          category: "Conference"
+          title: "Speaker Session at Kendriya Vidyalaya Janakpuri",
+          image: "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/Kv logo/kv logo.jpg",
+          category: "Speaker Session",
+          date: "July 2025",
+          description: "Delivered a speaker session at Kendriya Vidyalaya Janakpuri, inspiring students in technology and innovation.",
+          gallery: [
+            "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/WhatsApp Image 2025-07-17 at 12.16.42_18ccf7a4.jpg",
+            "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/WhatsApp Image 2025-07-17 at 12.16.42_aa46c8d4.jpg",
+            "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/WhatsApp Image 2025-07-17 at 12.16.43_6a6d18ed.jpg",
+            "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/WhatsApp Image 2025-07-17 at 12.16.43_81c3ecad.jpg",
+            "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/WhatsApp Image 2025-07-17 at 12.16.45_068622ee.jpg",
+            "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/WhatsApp Image 2025-07-17 at 12.16.46_7da34887.jpg"
+          ]
         }
       ]
     }
