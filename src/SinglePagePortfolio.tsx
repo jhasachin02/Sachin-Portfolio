@@ -36,7 +36,9 @@ import {
   HiCode,
   HiCollection,
   HiBriefcase,
-  HiMail
+  HiMail,
+  HiPhone,
+  HiLocationMarker
 } from 'react-icons/hi';
 import { 
   SiTypescript, 
@@ -883,9 +885,13 @@ const ProjectsSection: React.FC = () => {
 
 // Experience Section Component
 const ExperienceSection: React.FC = () => {
-  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: false });
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: false });
+  const [eventGalleryRef, eventGalleryInView] = useInView({ threshold: 0.1, triggerOnce: false });
   const [expandedLeadership, setExpandedLeadership] = useState<number | null>(null);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
+  const [expandedAchievements, setExpandedAchievements] = useState<number | null>(null);
+  const [expandedCertifications, setExpandedCertifications] = useState<number | null>(null);
+  const [expandedEventGallery, setExpandedEventGallery] = useState<number | null>(null);
 
   const toggleLeadershipExpansion = (index: number) => {
     setExpandedLeadership(expandedLeadership === index ? null : index);
@@ -893,6 +899,18 @@ const ExperienceSection: React.FC = () => {
 
   const toggleExperienceExpansion = (index: number) => {
     setExpandedExperience(expandedExperience === index ? null : index);
+  };
+
+  const toggleAchievementsExpansion = (index: number) => {
+    setExpandedAchievements(expandedAchievements === index ? null : index);
+  };
+
+  const toggleCertificationsExpansion = (index: number) => {
+    setExpandedCertifications(expandedCertifications === index ? null : index);
+  };
+
+  const toggleEventGalleryExpansion = (index: number) => {
+    setExpandedEventGallery(expandedEventGallery === index ? null : index);
   };
 
   // Simplified for debugging
@@ -977,6 +995,222 @@ const ExperienceSection: React.FC = () => {
     }
   ];
 
+  // Achievements Data
+  const achievements = [
+    {
+      title: "Hackathon Mentors & Judges",
+      category: "Technical Leadership",
+      items: [
+        {
+          title: "Tech-X Hackathon Mentor",
+          organization: "DBU University",
+          year: "September 2024",
+          description: "◦ Guided 15+ teams through technical challenges and innovation processes\n◦ Provided expertise in full-stack development and system architecture"
+        },
+        {
+          title: "Startup-X Mentor",
+          organization: "Ashoka University",
+          year: "September 2024",
+          description: "◦ Mentored aspiring entrepreneurs in technical product development\n◦ Advised on technology stack selection and MVP development strategies"
+        },
+        {
+          title: "HackArena Mentor",
+          organization: "IIIT Delhi",
+          year: "February 2025",
+          description: "◦ Specialized mentorship in competitive programming and algorithm optimization\n◦ Guided participants through complex data structure implementations"
+        },
+        {
+          title: "CodeForge Hackathon Mentor",
+          organization: "Microsoft Office Noida",
+          year: "April 2025",
+          description: "Provided technical guidance at Microsoft-sponsored innovation event\n◦ Mentored teams in cloud computing and Azure service integration"
+        },
+        {
+          title: "Electrothon 7.0 Judge",
+          organization: "NIT Hamirpur",
+          year: " March 2025",
+          description: "Evaluated 50+ innovative technical projects and solutions\n◦ Assessed projects based on technical complexity, innovation, and impact"
+        },
+        {
+          title: "AM Hacks Judge",
+          organization: "IGDTUW",
+          year: "April 2025",
+          description: "Specialized judge for women in tech hackathon initiatives\n◦ Evaluated projects focusing on social impact and diversity in technology"
+        },
+        {
+          title: "GIH Judge",
+          organization: "Galgotia College of Engineering",
+          year: "April 2025",
+          description: "◦Technical judge for college-level hackathon and innovation competition\n◦ Evaluated student projects across multiple engineering domains"
+        }
+      ]
+    },
+    {
+      title: "Competition Winners & Rankings",
+      category: "Technical Achievements",
+      items: [
+        {
+          title: "Hacknovate 5.0 Winner",
+          organization: "ABES IT",
+          year: "2024",
+          description: "First place winner in competitive college-level hackathon\n◦ Developed innovative solution addressing real-world problem"
+        },
+        {
+          title: "Flipkart Grid 5.0 Finalist",
+          organization: "Flipkart",
+          year: "2024",
+          description: "Selected as finalist in national-level e-commerce technology challenge\n◦ Advanced through multiple rounds of technical assessments"
+        },
+        {
+          title: "IEEEXtreme 17.0 Achiever",
+          organization: "IEEE",
+          year: "2024",
+          description: "Achieved Global Rank: 4029 out of 50,000+ participants worldwide\n◦ Secured National Rank: 2311 among Indian participants"
+        }
+      ]
+    },
+    {
+      title: "Professional Excellence Awards",
+      category: "Work Recognition",
+      items: [
+        {
+          title: "Best Intern Performance",
+          organization: "Kratos Gaming Network",
+          year: "2024",
+          description: "Recognized for exceptional contribution to Web3 integration projects\n◦ Achieved 35% increase in user engagement through innovative features"
+        },
+        {
+          title: "Outstanding Project Delivery",
+          organization: "Nimbus Adcom Private Limited",
+          year: "2024",
+          description: "Achieved 100% on-time project delivery rate across 6-month internship\n◦ Maintained 95% average client satisfaction score across 10+ projects"
+        }
+      ]
+    },
+    {
+      title: "Leadership & Community Impact",
+      category: "Community Recognition", 
+      items: [
+        {
+          title: "IEEE Student Branch Excellence",
+          organization: "IEEE JSSATEN",
+          year: "May 2024 - June 2025",
+          description: "Led successful technical events and workshops, increasing student participation by 60%\n◦ Fostered a culture of learning and collaboration within the tech community"
+        },
+        {
+          title: "STEM Mentorship Impact",
+          organization: "iExplore Foundation",
+          year: "July 2025",
+          description: "Successfully mentored 50+ students in STEM innovation and prototype development\n◦ Guided students through hands-on project-based learning experiences"
+        }
+      ]
+    }
+  ];
+
+  // Certifications Data
+  const certifications = [
+    {
+      title: "Cloud Computing & Development",
+      category: "Technical Skills",
+      items: [
+        {
+          title: "Google Cloud Fundamentals",
+          issuer: "Google",
+          year: "2024",
+          skills: ["Google Cloud Platform", "Cloud Computing", "Cloud Services"],
+          certificateUrl: "https://drive.google.com/file/d/1u9oKy6tfnSBRPqkiytKB0NG4wwQz-45w/view"
+        },
+        {
+          title: "Programming with C++ Language",
+          issuer: "Udemy",
+          year: "2024",
+          skills: ["C++", "Programming", "Object-Oriented Programming", "Data Structures"],
+          certificateUrl: "https://www.udemy.com/certificate/UC-8abe5b96-7f66-4b7d-957c-6966477ceb15/"
+        }
+      ]
+    },
+    {
+      title: "AI & Machine Learning",
+      category: "Emerging Technologies",
+      items: [
+        {
+          title: "Career Essentials in Generative AI",
+          issuer: "Microsoft & LinkedIn",
+          year: "2024",
+          skills: ["Generative AI", "Artificial Intelligence", "Machine Learning", "AI Tools"],
+          certificateUrl: "https://www.linkedin.com/learning/certificates/d0d1bc4f5a2f1238e578ebb3352f28ab7face8f3746665712052b3e5a42b51e1"
+        }
+      ]
+    }
+  ];
+
+  // Event Gallery Data
+  const eventGallery = [
+    {
+      title: "Technical Workshops",
+      category: "Educational Events",
+      events: [
+        {
+          title: "Web Development Bootcamp",
+          image: "🚀",
+          category: "Workshop"
+        },
+        {
+          title: "AI/ML Innovation Summit",
+          image: "🤖",
+          category: "Summit"
+        },
+        {
+          title: "IEEE Technical Workshop",
+          image: "⚡",
+          category: "Workshop"
+        }
+      ]
+    },
+    {
+      title: "Hackathons & Competitions",
+      category: "Competitive Events",
+      events: [
+        {
+          title: "CodeFest 2024",
+          image: "💻",
+          category: "Hackathon"
+        },
+        {
+          title: "TechCrunch Startup Weekend",
+          image: "🏆",
+          category: "Competition"
+        },
+        {
+          title: "Innovation Challenge",
+          image: "🎯",
+          category: "Competition"
+        }
+      ]
+    },
+    {
+      title: "Community Events",
+      category: "Networking & Conferences",
+      events: [
+        {
+          title: "Blockchain Innovation Meet",
+          image: "🔗",
+          category: "Conference"
+        },
+        {
+          title: "Developer Community Meetup",
+          image: "👥",
+          category: "Networking"
+        },
+        {
+          title: "Tech Leadership Forum",
+          image: "🎤",
+          category: "Conference"
+        }
+      ]
+    }
+  ];
+
   return (
     <section id="experience" className="experience-section">
       <div className="container">
@@ -1052,7 +1286,6 @@ const ExperienceSection: React.FC = () => {
             {/* Leadership Positions Section */}
             <div className="leadership-section">
               <h3 className="leadership-title">Leadership Positions</h3>
-              <p className="leadership-subtitle mobile-only">👆 Tap on any position to expand details</p>
               
               <div className="timeline-leadership">
                 {leadershipPositions.map((position, index) => (
@@ -1108,6 +1341,227 @@ const ExperienceSection: React.FC = () => {
                 ))}
               </div>
             </div>
+
+            {/* Achievements Section */}
+            <div className="achievements-section">
+              <h3 className="achievements-title">Key Achievements</h3>
+              <div className="achievements-grid">
+                {achievements.map((achievementGroup, groupIdx) => (
+                  <div key={groupIdx} className="achievement-group">
+                    <div className="achievement-group-header clickable" style={{cursor:'pointer'}} onClick={() => toggleAchievementsExpansion(groupIdx)}>
+                      <div className="achievement-group-info">
+                        <h4 className="achievement-group-title">{achievementGroup.title}</h4>
+                        <span className="achievement-group-category">{achievementGroup.category}</span>
+                      </div>
+                      <span className="expand-indicator-achievements" style={{fontSize: '1.5rem', fontWeight: 'bold', marginLeft: '1rem'}}>
+                        {expandedAchievements === groupIdx ? '-' : '+'}
+                      </span>
+                    </div>
+                    <div className={`achievement-group-content${expandedAchievements === groupIdx ? ' expanded' : ''}`} style={{ display: expandedAchievements === groupIdx ? 'block' : 'none' }}>
+                      {achievementGroup.title === 'Hackathon Mentors & Judges' ? (
+                        <div className="mini-scrollable-content">
+                          {achievementGroup.items.map((achievement, index) => (
+                            <div key={index} className="achievement-content-leadership">
+                              <div className="timeline-header-leadership">
+                                <div className="position-info">
+                                  <h3 className="position-title">{achievement.title}</h3>
+                                  <h4 className="organization-name">{achievement.organization}</h4>
+                                </div>
+                                <div className="position-header-right">
+                                  <span className="position-period">{achievement.year}</span>
+                                </div>
+                              </div>
+                              <div className="position-expandable-content expanded">
+                                <div className="achievement-bullets">
+                                  {achievement.description.split('\n').map((point, pointIndex) => (
+                                    <div key={pointIndex} className="achievement-bullet-leadership">
+                                      {point}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        achievementGroup.items.map((achievement, index) => (
+                          <div key={index} className="achievement-content-leadership">
+                            <div className="timeline-header-leadership">
+                              <div className="position-info">
+                                <h3 className="position-title">{achievement.title}</h3>
+                                <h4 className="organization-name">{achievement.organization}</h4>
+                              </div>
+                              <div className="position-header-right">
+                                <span className="position-period">{achievement.year}</span>
+                              </div>
+                            </div>
+                            <div className="position-expandable-content expanded">
+                              <div className="achievement-bullets">
+                                {achievement.description.split('\n').map((point, pointIndex) => (
+                                  <div key={pointIndex} className="achievement-bullet-leadership">
+                                    {point}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Certifications Section */}
+            <div className="certifications-section">
+              <h3 className="certifications-title">Certifications</h3>
+              <div className="certifications-grid">
+                {certifications.map((certCategory, categoryIndex) => (
+                  <div key={categoryIndex} className="certification-group">
+                    <div className="certification-group-header clickable" style={{cursor:'pointer'}} onClick={() => toggleCertificationsExpansion(categoryIndex)}>
+                      <div className="certification-group-info">
+                        <h4 className="certification-group-title">{certCategory.title}</h4>
+                        <span className="certification-group-category">{certCategory.category}</span>
+                      </div>
+                      <span className="expand-indicator-certifications" style={{fontSize: '1.5rem', fontWeight: 'bold', marginLeft: '1rem'}}>
+                        {expandedCertifications === categoryIndex ? '-' : '+'}
+                      </span>
+                    </div>
+                    <div className={`certification-group-content${expandedCertifications === categoryIndex ? ' expanded' : ''}`} style={{ display: expandedCertifications === categoryIndex ? 'block' : 'none' }}>
+                      <div className="certification-items">
+                        {certCategory.items.map((cert, index) => (
+                          <div key={index} className="certification-content-leadership">
+                            <div className="timeline-header-leadership">
+                              <div className="position-info">
+                                <h3 className="position-title">{cert.title}</h3>
+                                <h4 className="organization-name">{cert.issuer}</h4>
+                              </div>
+                              <div className="position-header-right">
+                                <span className="position-period">{cert.year}</span>
+                              </div>
+                            </div>
+                            <div className="position-expandable-content expanded">
+                              <div className="certification-details">
+                                <div className="cert-skills-tags">
+                                  {cert.skills.map((skill, skillIndex) => (
+                                    <span key={skillIndex} className="cert-skill-tag">
+                                      {skill}
+                                    </span>
+                                  ))}
+                                </div>
+                                <div className="cert-links-section">
+                                  <a 
+                                    href={cert.certificateUrl} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="cert-link-button view-cert-btn"
+                                  >
+                                    View Certificate
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Event Gallery Section */}
+            <div className="event-gallery-section" ref={eventGalleryRef}>
+              <h3 className="event-gallery-title">Event Gallery</h3>
+              
+              {/* Gallery Subsections in Boxes */}
+              <div className="event-gallery-subsections">
+                {eventGallery.map((subsection, subsectionIndex) => (
+                  <motion.div
+                    key={subsectionIndex}
+                    className="event-gallery-box"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={eventGalleryInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: subsectionIndex * 0.2 }}
+                  >
+                    <div 
+                      className="event-gallery-box-header clickable" 
+                      onClick={() => toggleEventGalleryExpansion(subsectionIndex)}
+                    >
+                      <div className="event-gallery-box-info">
+                        <h4 className="event-subsection-title">{subsection.title}</h4>
+                        <span className="event-subsection-category">{subsection.category}</span>
+                      </div>
+                      <span className="expand-indicator-event-gallery">
+                        {expandedEventGallery === subsectionIndex ? '−' : '+'}
+                      </span>
+                    </div>
+                    
+                    <div className={`event-gallery-content${expandedEventGallery === subsectionIndex ? ' expanded' : ''}`}>
+                      <div className="event-gallery-carousel">
+                        <div className="event-gallery-track">
+                          {[...subsection.events, ...subsection.events].map((event, index) => (
+                            <motion.div
+                              key={`${subsectionIndex}-${index}`}
+                              className="event-card-animated"
+                              initial={{ x: '100%' }}
+                              animate={{ x: '-100%' }}
+                              transition={{
+                                duration: 15,
+                                repeat: Infinity,
+                                ease: 'linear',
+                                delay: (subsectionIndex * 5) + (index * 1.5)
+                              }}
+                              whileHover={{ 
+                                scale: 1.05,
+                                transition: { duration: 0.2 }
+                              }}
+                            >
+                              <div className="event-image-container">
+                                <span className="event-emoji">{event.image}</span>
+                              </div>
+                              <div className="event-info">
+                                <h5 className="event-title-animated">{event.title}</h5>
+                                <span className="event-category-badge">{event.category}</span>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Alternative: Static horizontal cards for each subsection */}
+                      <div className="event-gallery-horizontal">
+                        <div className="event-gallery-scroll">
+                          {subsection.events.map((event, eventIndex) => (
+                            <motion.div
+                              key={`static-${subsectionIndex}-${eventIndex}`}
+                              className="event-card-horizontal"
+                              initial={{ opacity: 0, x: 50 }}
+                              animate={eventGalleryInView ? { opacity: 1, x: 0 } : {}}
+                              transition={{ duration: 0.6, delay: (subsectionIndex * 0.3) + (eventIndex * 0.1) }}
+                              whileHover={{ 
+                                scale: 1.08,
+                                y: -5,
+                                transition: { duration: 0.3 }
+                              }}
+                            >
+                              <div className="event-image-horizontal">
+                                <span className="event-emoji-large">{event.image}</span>
+                              </div>
+                              <div className="event-details-horizontal">
+                                <h5 className="event-name">{event.title}</h5>
+                                <span className="event-type">{event.category}</span>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1115,145 +1569,9 @@ const ExperienceSection: React.FC = () => {
   );
 };
 
-// Resume Modal Component
-interface ResumeModalProps {
-  onClose: () => void;
-}
-
-const ResumeModal: React.FC<ResumeModalProps> = ({ onClose }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = './Sachin Resume.pdf';
-    link.download = 'Sachin_Jha_Resume.pdf';
-    link.click();
-  };
-
-  const handleViewInNewTab = () => {
-    window.open('./Sachin Resume.pdf', '_blank', 'noopener,noreferrer');
-  };
-
-  const handleIframeLoad = () => {
-    setIsLoading(false);
-  };
-
-  const handleIframeError = () => {
-    setIsLoading(false);
-    setHasError(true);
-  };
-
-  // Check if device is mobile
-  const isMobile = window.innerWidth <= 768;
-
-  // On mobile, show fallback with view and download options
-  const showFallback = isMobile || hasError;
-
-  return (
-    <motion.div
-      className="resume-modal-backdrop"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      onClick={onClose}
-    >
-      <motion.div
-        className="resume-modal-content"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        transition={{ duration: 0.3 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <motion.button
-          className="resume-close-btn"
-          onClick={onClose}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          title="Close Resume"
-        >
-          ×
-        </motion.button>
-
-        {/* Show fallback on mobile devices */}
-        {showFallback ? (
-          <div className="resume-fallback">
-            <div className="fallback-content">
-              <div className="resume-icon">📄</div>
-              <h3>Sachin Jha - Resume</h3>
-              <p>Choose how you'd like to view the resume:</p>
-              <div className="fallback-buttons">
-                <motion.button
-                  className="btn-fallback-view"
-                  onClick={handleViewInNewTab}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaEye />
-                  <span>View PDF</span>
-                </motion.button>
-                <motion.button
-                  className="btn-fallback-download"
-                  onClick={handleDownload}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaDownload />
-                  <span>Download PDF</span>
-                </motion.button>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <>
-            {/* Loading indicator */}
-            {isLoading && (
-              <div className="resume-loading">
-                <div className="loading-spinner"></div>
-                <p>Loading Resume...</p>
-              </div>
-            )}
-
-            <iframe
-              src="./Sachin Resume.pdf#toolbar=1&navpanes=0&scrollbar=1&page=1&zoom=FitH"
-              className={`resume-preview-iframe ${isLoading ? 'hidden' : ''}`}
-              title="Sachin Jha Resume Preview"
-              onLoad={handleIframeLoad}
-              onError={handleIframeError}
-            />
-          </>
-        )}
-      </motion.div>
-    </motion.div>
-  );
-};
-
 // Contact Section Component
 const ContactSection: React.FC = () => {
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: false });
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    // Form data would be sent to backend/email service in production
-    alert('Thank you for reaching out! I\'ll get back to you within 24 hours.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-  };
 
   return (
     <section id="contact" className="contact-section" ref={ref}>
@@ -1266,235 +1584,203 @@ const ContactSection: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="contact-header">
-              <motion.h2
-                className="contact-title-main"
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6 }}
-              >
-                Let's Connect & Collaborate
-              </motion.h2>
-              <motion.p
-                className="contact-subtitle"
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Open to exciting opportunities, innovative projects, and meaningful partnerships
-              </motion.p>
+              <div className="contact-title-section">
+                <motion.h2 
+                  className="contact-title-main"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  Get in Touch
+                </motion.h2>
+                <motion.p 
+                  className="contact-subtitle"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  Let's create something amazing together.
+                </motion.p>
+              </div>
             </div>
 
-            <div className="contact-content-grid">
-              <motion.div
-                className="contact-info-professional"
+            <div className="contact-content-wrapper">
+              {/* Contact Information */}
+              <motion.div 
+                className="contact-info-section"
                 initial={{ opacity: 0, x: -50 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <div className="contact-intro">
-                  <h3 className="contact-intro-title">Ready to Build Something Amazing?</h3>
-                  <p className="contact-intro-text">
-                    I'm passionate about creating innovative solutions and contributing to impactful projects. 
-                    Whether you're looking for a dedicated developer, seeking collaboration on cutting-edge 
-                    technologies, or exploring new opportunities, I'd love to connect.
-                  </p>
-                </div>
-
-                <div className="contact-details-professional">
-                  <motion.div
-                    className="contact-item-professional"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    whileHover={{ scale: 1.02, y: -2 }}
-                  >
-                    <div className="contact-icon-professional">
-                      <HiOutlineMail />
-                    </div>
-                    <div className="contact-info-text">
-                      <h4>Email</h4>
-                      <p>jhasachin1307@gmail.com</p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="contact-item-professional"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                    whileHover={{ scale: 1.02, y: -2 }}
-                  >
-                    <div className="contact-icon-professional phone">
-                      📱
-                    </div>
-                    <div className="contact-info-text">
-                      <h4>Phone</h4>
-                      <p>+91 9650411734</p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="contact-item-professional"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                    whileHover={{ scale: 1.02, y: -2 }}
-                  >
-                    <div className="contact-icon-professional">
-                      <FaLinkedin />
-                    </div>
-                    <div className="contact-info-text">
-                      <h4>LinkedIn</h4>
-                      <p>linkedin.com/in/sachin-jha-</p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="contact-item-professional"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.7 }}
-                    whileHover={{ scale: 1.02, y: -2 }}
-                  >
-                    <div className="contact-icon-professional">
-                      <FaGithub />
-                    </div>
-                    <div className="contact-info-text">
-                      <h4>GitHub</h4>
-                      <p>github.com/jhasachin02</p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="contact-item-professional"
+                <h3 className="contact-info-title">Let's Connect</h3>
+                <p className="contact-info-description">
+                  Ready to collaborate on exciting projects or discuss innovative ideas? 
+                  I'm always open to new opportunities and interesting conversations.
+                </p>
+                
+                <div className="contact-info-grid">
+                  <motion.div 
+                    className="contact-info-item"
                     initial={{ opacity: 0, y: 20 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.8 }}
-                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
                   >
-                    <div className="contact-icon-professional location">
-                      📍
+                    <div className="contact-icon-wrapper">
+                      <HiLocationMarker className="contact-icon" />
                     </div>
-                    <div className="contact-info-text">
+                    <div className="contact-info-content">
                       <h4>Location</h4>
-                      <p>Delhi NCR, India</p>
+                      <p>Noida, Uttar Pradesh, India</p>
+                      <span className="contact-info-extra">Available for remote work</span>
                     </div>
                   </motion.div>
-                </div>
-
-                <div className="availability-status">
-                  <div className="availability-indicator">
-                    <div className="status-dot available"></div>
-                    <span className="status-text">Available for new opportunities</span>
-                  </div>
+                  
+                  <motion.div 
+                    className="contact-info-item"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.9 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
+                    <div className="contact-icon-wrapper">
+                      <HiMail className="contact-icon" />
+                    </div>
+                    <div className="contact-info-content">
+                      <h4>Email</h4>
+                      <a href="mailto:sachin.jha02@gmail.com" className="contact-link">
+                        sachin.jha02@gmail.com
+                      </a>
+                      <span className="contact-info-extra">Quick response guaranteed</span>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="contact-info-item"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 1.0 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
+                    <div className="contact-icon-wrapper">
+                      <FaLinkedin className="contact-icon" />
+                    </div>
+                    <div className="contact-info-content">
+                      <h4>LinkedIn</h4>
+                      <a href="https://linkedin.com/in/sachin-jha-" target="_blank" rel="noopener noreferrer" className="contact-link">
+                        linkedin.com/in/sachin-jha-
+                      </a>
+                      <span className="contact-info-extra">Professional network</span>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="contact-info-item"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 1.1 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
+                    <div className="contact-icon-wrapper">
+                      <FaGithub className="contact-icon" />
+                    </div>
+                    <div className="contact-info-content">
+                      <h4>GitHub</h4>
+                      <a href="https://github.com/jhasachin02" target="_blank" rel="noopener noreferrer" className="contact-link">
+                        github.com/jhasachin02
+                      </a>
+                      <span className="contact-info-extra">Code repositories</span>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="contact-info-item"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 1.2 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
+                    <div className="contact-icon-wrapper">
+                      <FaTwitter className="contact-icon" />
+                    </div>
+                    <div className="contact-info-content">
+                      <h4>Twitter</h4>
+                      <a href="https://twitter.com/sachin_jha02" target="_blank" rel="noopener noreferrer" className="contact-link">
+                        @sachin_jha02
+                      </a>
+                      <span className="contact-info-extra">Tech discussions</span>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="contact-info-item"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 1.3 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
+                    <div className="contact-icon-wrapper">
+                      <FaDownload className="contact-icon" />
+                    </div>
+                    <div className="contact-info-content">
+                      <h4>Resume</h4>
+                      <a href="./Sachin Resume.pdf" download="Sachin_Jha_Resume.pdf" className="contact-link">
+                        Download CV
+                      </a>
+                      <span className="contact-info-extra">Updated recently</span>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
 
-              <motion.div
-                className="contact-form-professional"
+              {/* Contact Form */}
+              <motion.div 
+                className="contact-form-section"
                 initial={{ opacity: 0, x: 50 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <form onSubmit={handleSubmit} className="professional-form">
-                  <div className="form-header">
-                    <h3>Send Me a Message</h3>
-                    <p>Let's discuss how we can work together</p>
-                  </div>
-
+                <form className="contact-form">
+                  <h3 className="contact-form-title">Send a Message</h3>
+                  <p className="contact-form-description">
+                    Have a project in mind? Let's discuss how we can work together.
+                  </p>
+                  
                   <div className="form-row">
-                    <motion.div
-                      className="form-group-professional"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.5 }}
-                    >
-                      <label htmlFor="name">Full Name</label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Your full name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </motion.div>
-
-                    <motion.div
-                      className="form-group-professional"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.6 }}
-                    >
-                      <label htmlFor="email">Email Address</label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="your.email@example.com"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </motion.div>
+                    <div className="form-group">
+                      <label htmlFor="name">Your Name</label>
+                      <input type="text" id="name" name="name" placeholder="John Doe" required />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="email">Your Email</label>
+                      <input type="email" id="email" name="email" placeholder="john@example.com" required />
+                    </div>
                   </div>
-
-                  <motion.div
-                    className="form-group-professional"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.7 }}
-                  >
+                  
+                  <div className="form-group">
                     <label htmlFor="subject">Subject</label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      <option value="">Select a topic</option>
-                      <option value="job-opportunity">Job Opportunity</option>
-                      <option value="collaboration">Project Collaboration</option>
-                      <option value="freelance">Freelance Work</option>
-                      <option value="consultation">Technical Consultation</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </motion.div>
-
-                  <motion.div
-                    className="form-group-professional"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.8 }}
-                  >
+                    <input type="text" id="subject" name="subject" placeholder="Let's work together" required />
+                  </div>
+                  
+                  <div className="form-group">
                     <label htmlFor="message">Message</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      placeholder="Tell me about your project, opportunity, or how we can collaborate..."
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleInputChange}
+                    <textarea 
+                      id="message" 
+                      name="message" 
+                      rows={6} 
+                      placeholder="Tell me about your project or idea..."
                       required
-                    />
-                  </motion.div>
-
-                  <motion.button
-                    type="submit"
-                    className="btn btn-primary-professional"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.9 }}
-                    whileHover={{ 
-                      scale: 1.02,
-                      boxShadow: "0 15px 35px rgba(79, 172, 254, 0.3)"
-                    }}
-                    whileTap={{ scale: 0.98 }}
+                    ></textarea>
+                  </div>
+                  
+                  <motion.button 
+                    type="submit" 
+                    className="btn btn-primary-glow contact-submit-btn"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <span>Send Message</span>
-                    <div className="btn-arrow">→</div>
+                    <HiMail className="btn-icon" />
+                    Send Message
                   </motion.button>
                 </form>
               </motion.div>
@@ -1503,6 +1789,24 @@ const ContactSection: React.FC = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+// Resume Modal Component
+const ResumeModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <h2>Download Resume</h2>
+        <p>Click the button below to download my resume.</p>
+        <a href="./Sachin_Jha_Resume.pdf" download="Sachin_Jha_Resume.pdf" className="btn btn-primary-glow">
+          Download Resume
+        </a>
+        <button className="btn btn-secondary-glass" onClick={onClose}>
+          Close
+        </button>
+      </div>
+    </div>
   );
 };
 
