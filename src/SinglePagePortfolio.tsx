@@ -1910,11 +1910,11 @@ const ContactSection: React.FC = () => {
                   <div className="form-row">
                     <div className="form-group">
                       <label htmlFor="name">Your Name</label>
-                      <input type="text" id="name" name="name" placeholder="John Doe" required />
+                      <input type="text" id="name" name="name" placeholder="Your Name" required />
                     </div>
                     <div className="form-group">
                       <label htmlFor="email">Your Email</label>
-                      <input type="email" id="email" name="email" placeholder="john@example.com" required />
+                      <input type="email" id="email" name="email" placeholder="yourname@example.com" required />
                     </div>
                   </div>
                   
