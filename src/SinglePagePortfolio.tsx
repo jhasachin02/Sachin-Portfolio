@@ -892,6 +892,7 @@ const ExperienceSection: React.FC = () => {
   const [expandedAchievements, setExpandedAchievements] = useState<number | null>(null);
   const [expandedCertifications, setExpandedCertifications] = useState<number | null>(null);
   const [expandedEventGallery, setExpandedEventGallery] = useState<number | null>(null);
+  const [expandedEventItem, setExpandedEventItem] = useState<string | null>(null);
 
   const toggleLeadershipExpansion = (index: number) => {
     setExpandedLeadership(expandedLeadership === index ? null : index);
@@ -911,6 +912,10 @@ const ExperienceSection: React.FC = () => {
 
   const toggleEventGalleryExpansion = (index: number) => {
     setExpandedEventGallery(expandedEventGallery === index ? null : index);
+  };
+
+  const toggleEventItemExpansion = (eventKey: string) => {
+    setExpandedEventItem(expandedEventItem === eventKey ? null : eventKey);
   };
 
   // Simplified for debugging
@@ -1018,6 +1023,12 @@ const ExperienceSection: React.FC = () => {
           organization: "IIIT Delhi",
           year: "February 2025",
           description: "◦ Specialized mentorship in competitive programming and algorithm optimization\n◦ Guided participants through complex data structure implementations"
+        },
+        {
+          title: "Infronix Hackathon Mentor",
+          organization: "IIIT Delhi",
+          year: "February 2025",
+          description: "◦ Invited as technical mentor for Infronix, IIIT Delhi's premier hackathon event\n◦ Guided 20+ teams in innovative tech solutions and product development\n◦ Provided expertise in full-stack development, system architecture, and tech entrepreneurship\n◦ Conducted mentoring sessions on modern web technologies and industry best practices"
         },
         {
           title: "CodeForge Hackathon Mentor",
@@ -1147,44 +1158,129 @@ const ExperienceSection: React.FC = () => {
   // Event Gallery Data
   const eventGallery = [
     {
-      title: "Technical Workshops",
+      title: "Technical Workshops / Hackathons",
       category: "Educational Events",
       events: [
+        // Removed 'Web Development Bootcamp' event
         {
-          title: "Web Development Bootcamp",
+          title: "Infronix IIIT Delhi (Mentor)",
+          image: "/Gallery/Infronix IIIT Delhi/1739909306187.jpg",
+          category: "Hackathon",
+          date: "February 2025",
+          description: "Mentored teams at IIIT Delhi's premier hackathon event",
+          gallery: [
+            "/Gallery/Infronix IIIT Delhi/1739909306187.jpg",
+            "/Gallery/Infronix IIIT Delhi/1739909326018.jpg",
+            "/Gallery/Infronix IIIT Delhi/1739909332105.jpg",
+            "/Gallery/Infronix IIIT Delhi/IMG_1859.JPG",
+            "/Gallery/Infronix IIIT Delhi/IMG_1860.JPG",
+            "/Gallery/Infronix IIIT Delhi/IMG_1897.JPG"
+          ]
+        },
+        {
+          title: "AM Hacks IGDTUW",
+          image: "/Gallery/Am Hacks IGDTUW/1.jpg",
+          category: "Hackathon",
+          date: "April 2025",
+          description: "Women in tech hackathon judge",
+          gallery: [
+            "/Gallery/Am Hacks IGDTUW/1.jpg",
+            "/Gallery/Am Hacks IGDTUW/2.jpg",
+            "/Gallery/Am Hacks IGDTUW/3.jpg",
+            "/Gallery/Am Hacks IGDTUW/1744518695193.jpg",
+            "/Gallery/Am Hacks IGDTUW/1744518695476.jpg",
+            "/Gallery/Am Hacks IGDTUW/1744518702229.jpg"
+          ]
+        },
+        {
+          title: "GIH Galgotia College",
+          image: "/Gallery/GIH Galgotia College Of Engineering/1747571966759.jpg",
+          category: "Competition",
+          date: "April 2025",
+          description: "College-level innovation competition judge",
+          gallery: [
+            "/Gallery/GIH Galgotia College Of Engineering/1747571966759.jpg",
+            "/Gallery/GIH Galgotia College Of Engineering/1747571966931.jpg",
+            "/Gallery/GIH Galgotia College Of Engineering/1747571966983.jpg",
+            "/Gallery/GIH Galgotia College Of Engineering/1747571967776.jpg",
+            "/Gallery/GIH Galgotia College Of Engineering/1747571967816.jpg",
+            "/Gallery/GIH Galgotia College Of Engineering/1747571968837.jpg",
+            "/Gallery/GIH Galgotia College Of Engineering/1747571974938.jpg",
+            "/Gallery/GIH Galgotia College Of Engineering/1747571978156.jpg"
+          ]
+        },
+        {
+          title: "Electrothon 7.0 NIT Hamirpur",
+          image: "/Gallery/NIT Hamirpur/1 img.jpg",
+          category: "Hackathon",
+          date: "March 2025",
+          description: "Premier NIT hackathon evaluation",
+          gallery: [
+            "/Gallery/NIT Hamirpur/1 img.jpg",
+            "/Gallery/NIT Hamirpur/1741882172720.jpg",
+            "/Gallery/NIT Hamirpur/1741882186001.jpg",
+            "/Gallery/NIT Hamirpur/1741882199424.jpg",
+            "/Gallery/NIT Hamirpur/1741882251872.jpg",
+            "/Gallery/NIT Hamirpur/1741882279218.jpg",
+            "/Gallery/NIT Hamirpur/1741882279384.jpg",
+            "/Gallery/NIT Hamirpur/1741882317481.jpg",
+            "/Gallery/NIT Hamirpur/1741882355250.jpg"
+          ]
+        },
+        {
+          title: "E Summit IIIT Delhi",
+          image: "/Gallery/E Summit IIIT Delhi/1742729290093.jpg",
+          category: "Summit",
+          date: "2025",
+          description: "Entrepreneurship summit participation",
+          gallery: [
+            "/Gallery/E Summit IIIT Delhi/1742729290093.jpg",
+            "/Gallery/E Summit IIIT Delhi/1742729292004.jpg",
+            "/Gallery/E Summit IIIT Delhi/1742729301709.jpg",
+            "/Gallery/E Summit IIIT Delhi/1742729311244.jpg",
+            "/Gallery/E Summit IIIT Delhi/1742729312380.jpg",
+            "/Gallery/E Summit IIIT Delhi/1742729319423.jpg",
+            "/Gallery/E Summit IIIT Delhi/1742729329260.jpg",
+            "/Gallery/E Summit IIIT Delhi/1742729331989.jpg",
+            "/Gallery/E Summit IIIT Delhi/1742729332613.jpg",
+            "/Gallery/E Summit IIIT Delhi/1742729364433.jpg"
+          ]
+        },
+        {
+          title: "Hack4Bihar Delhi Tour",
+          image: "/Gallery/Hack4Bihar Delhi Hacking Tour/IMG_20250306_174151 - Parth.jpg",
+          category: "Hackathon",
+          date: "March 2025",
+          description: "State-level hackathon tour across Bihar",
+          gallery: [
+            "/Gallery/Hack4Bihar Delhi Hacking Tour/IMG_20250306_174151 - Parth.jpg",
+            "/Gallery/Hack4Bihar Delhi Hacking Tour/IMG-20250306-WA0208 - shahebsha anjum.jpg",
+            "/Gallery/Hack4Bihar Delhi Hacking Tour/IMG-20250307-WA0426 - Ankur Sharma.jpg",
+            "/Gallery/Hack4Bihar Delhi Hacking Tour/WhatsApp Image 2025-03-17 at 21.15.42_15dc909d - RISHI THAKUR.jpg"
+          ]
+        },
+        {
+          title: "CodeForge MS Office Gurgaon",
+          image: "/Gallery/CodeForge MS Ofiice Gurgaon/1745089508191.jpg",
+          category: "Hackathon",
+          date: "April 2025",
+          description: "Microsoft-sponsored innovation event mentoring",
+          gallery: [
+            "/Gallery/CodeForge MS Ofiice Gurgaon/1745089508191.jpg",
+            "/Gallery/CodeForge MS Ofiice Gurgaon/1745089509720.jpg",
+            "/Gallery/CodeForge MS Ofiice Gurgaon/1745089510979.jpg",
+            "/Gallery/CodeForge MS Ofiice Gurgaon/1745089522059.jpg",
+            "/Gallery/CodeForge MS Ofiice Gurgaon/1745089530853.jpg",
+            "/Gallery/CodeForge MS Ofiice Gurgaon/1745089533819.jpg"
+          ]
+        },
+        {
+          title: "HackArena IIIT Delhi",
           image: "🚀",
-          category: "Workshop"
-        },
-        {
-          title: "AI/ML Innovation Summit",
-          image: "🤖",
-          category: "Summit"
-        },
-        {
-          title: "IEEE Technical Workshop",
-          image: "⚡",
-          category: "Workshop"
-        }
-      ]
-    },
-    {
-      title: "Hackathons & Competitions",
-      category: "Competitive Events",
-      events: [
-        {
-          title: "CodeFest 2024",
-          image: "💻",
-          category: "Hackathon"
-        },
-        {
-          title: "TechCrunch Startup Weekend",
-          image: "🏆",
-          category: "Competition"
-        },
-        {
-          title: "Innovation Challenge",
-          image: "🎯",
-          category: "Competition"
+          category: "Hackathon",
+          date: "February 2025",
+          description: "Competitive programming and algorithm optimization mentorship",
+          gallery: []
         }
       ]
     },
@@ -1499,63 +1595,106 @@ const ExperienceSection: React.FC = () => {
                     </div>
                     
                     <div className={`event-gallery-content${expandedEventGallery === subsectionIndex ? ' expanded' : ''}`}>
-                      <div className="event-gallery-carousel">
-                        <div className="event-gallery-track">
-                          {[...subsection.events, ...subsection.events].map((event, index) => (
+                      {/* Event-wise Gallery Grid - Vertical Layout */}
+                      <div className="event-wise-gallery-vertical">
+                        {subsection.events.map((event, eventIndex) => {
+                          const eventKey = `${subsectionIndex}-${eventIndex}`;
+                          const hasGallery = event.gallery && event.gallery.length > 0;
+                          
+                          return (
                             <motion.div
-                              key={`${subsectionIndex}-${index}`}
-                              className="event-card-animated"
-                              initial={{ x: '100%' }}
-                              animate={{ x: '-100%' }}
-                              transition={{
-                                duration: 15,
-                                repeat: Infinity,
-                                ease: 'linear',
-                                delay: (subsectionIndex * 5) + (index * 1.5)
-                              }}
+                              key={eventKey}
+                              className="event-item-card"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={eventGalleryInView ? { opacity: 1, y: 0 } : {}}
+                              transition={{ duration: 0.5, delay: (subsectionIndex * 0.3) + (eventIndex * 0.1) }}
                               whileHover={{ 
-                                scale: 1.05,
+                                scale: 1.02,
                                 transition: { duration: 0.2 }
                               }}
                             >
-                              <div className="event-image-container">
-                                <span className="event-emoji">{event.image}</span>
+                              {/* Event Header */}
+                              <div className="event-item-header">
+                                <div className="event-thumbnail">
+                                  {event.image?.startsWith('/') ? (
+                                    <img src={event.image} alt={event.title} className="event-thumbnail-image" />
+                                  ) : (
+                                    <span className="event-emoji-thumbnail">{event.image}</span>
+                                  )}
+                                </div>
+                                <div className="event-meta">
+                                  <h5 className="event-item-title">{event.title}</h5>
+                                  <div className="event-badges">
+                                    <span className="event-category-badge">{event.category}</span>
+                                    {event.date && <span className="event-date-badge">{event.date}</span>}
+                                  </div>
+                                  {event.description && (
+                                    <p className="event-description">{event.description}</p>
+                                  )}
+                                </div>
                               </div>
-                              <div className="event-info">
-                                <h5 className="event-title-animated">{event.title}</h5>
-                                <span className="event-category-badge">{event.category}</span>
-                              </div>
+                              
+                              {/* Gallery Section */}
+                              {hasGallery && (
+                                <div className="event-gallery-section-individual">
+                                  <div 
+                                    className="gallery-expand-button"
+                                    onClick={() => toggleEventItemExpansion(eventKey)}
+                                  >
+                                    <span className="gallery-count">{event.gallery.length} Photos</span>
+                                    <span className="gallery-expand-icon">
+                                      {expandedEventItem === eventKey ? '▼' : '▶'}
+                                    </span>
+                                  </div>
+                                  
+                                  <div className={`event-photo-gallery ${expandedEventItem === eventKey ? 'expanded' : ''}`}>
+                                    <div className="photo-grid">
+                                      {event.gallery.map((photo, photoIndex) => (
+                                        <motion.div
+                                          key={photoIndex}
+                                          className="photo-frame"
+                                          initial={{ opacity: 0, scale: 0.8 }}
+                                          animate={expandedEventItem === eventKey ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                                          transition={{ 
+                                            duration: 0.4, 
+                                            delay: photoIndex * 0.1,
+                                            ease: "easeOut"
+                                          }}
+                                          whileHover={{ 
+                                            scale: 1.05,
+                                            zIndex: 10,
+                                            transition: { duration: 0.2 }
+                                          }}
+                                        >
+                                          <div className="photo-container">
+                                            <img 
+                                              src={photo} 
+                                              alt={`${event.title} - Photo ${photoIndex + 1}`}
+                                              className="gallery-photo"
+                                              loading="lazy"
+                                            />
+                                            <div className="photo-overlay">
+                                              <div className="photo-info">
+                                                <span className="photo-number">{photoIndex + 1}</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </motion.div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                              
+                              {/* No Gallery Message */}
+                              {!hasGallery && (
+                                <div className="no-gallery-message">
+                                  <span className="no-gallery-text">More photos coming soon...</span>
+                                </div>
+                              )}
                             </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Alternative: Static horizontal cards for each subsection */}
-                      <div className="event-gallery-horizontal">
-                        <div className="event-gallery-scroll">
-                          {subsection.events.map((event, eventIndex) => (
-                            <motion.div
-                              key={`static-${subsectionIndex}-${eventIndex}`}
-                              className="event-card-horizontal"
-                              initial={{ opacity: 0, x: 50 }}
-                              animate={eventGalleryInView ? { opacity: 1, x: 0 } : {}}
-                              transition={{ duration: 0.6, delay: (subsectionIndex * 0.3) + (eventIndex * 0.1) }}
-                              whileHover={{ 
-                                scale: 1.08,
-                                y: -5,
-                                transition: { duration: 0.3 }
-                              }}
-                            >
-                              <div className="event-image-horizontal">
-                                <span className="event-emoji-large">{event.image}</span>
-                              </div>
-                              <div className="event-details-horizontal">
-                                <h5 className="event-name">{event.title}</h5>
-                                <span className="event-type">{event.category}</span>
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </motion.div>
