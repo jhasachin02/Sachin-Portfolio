@@ -1,4 +1,4 @@
-# 🚀 Sachin Jha - Portfolio
+# Sachin Jha - Portfolio
 
 A modern, responsive portfolio website built with React, TypeScript, and Vite. Features smooth animations, mobile-first design, and professional UI/UX.
 
@@ -7,7 +7,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Vite. F
 **Website**: [sachinjha.me](https://sachinjha.me)  
 **GitHub Pages**: [jhasachin02.github.io/portfolio-](https://jhasachin02.github.io/portfolio-/)
 
-## ✨ Features
+## Features
 
 - 🎨 **Modern Design**: Clean, professional interface with glassmorphism effects
 - 📱 **Fully Responsive**: Optimized for all device sizes (mobile, tablet, desktop)
@@ -18,7 +18,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Vite. F
 - 📧 **Contact Form**: Professional contact form with validation
 - 🌟 **SEO Optimized**: Proper meta tags and semantic HTML structure
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: React 19, TypeScript
 - **Styling**: CSS3 with custom properties, CSS Grid, Flexbox
