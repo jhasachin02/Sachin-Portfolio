@@ -263,18 +263,17 @@ const SinglePagePortfolio: React.FC = () => {
                 </motion.button>
 
                 <motion.button
-                  className="btn btn-secondary-glass"
+                  className="btn btn-primary-glow"
                   onClick={() => setIsResumeModalOpen(true)}
                   whileHover={{ 
                     scale: 1.05,
-                    backgroundColor: "rgba(34, 197, 94, 0.1)",
-                    borderColor: "rgba(34, 197, 94, 0.4)"
+                    boxShadow: "0 20px 40px rgba(34, 197, 94, 0.2)"
                   }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <span className="btn-text">Resume</span>
-                  <div className="btn-icon"><FaEye /></div>
+                  <div className="btn-icon"><FaDownload /></div>
                 </motion.button>
               </motion.div>
             </motion.div>
@@ -1956,16 +1955,124 @@ const ContactSection: React.FC = () => {
 // Resume Modal Component
 const ResumeModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>Download Resume</h2>
-        <p>Click the button below to download my resume.</p>
-        <a href="./Sachin_Jha_Resume.pdf" download="Sachin_Jha_Resume.pdf" className="btn btn-primary-glow">
-          Download Resume
-        </a>
-        <button className="btn btn-secondary-glass" onClick={onClose}>
-          Close
+    <div className="modal-overlay" style={{position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.5)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      {/* Responsive modal styles for mobile */}
+      <style>{`
+        @media (max-width: 600px) {
+          .resume-modal-content {
+            padding: 1rem !important;
+            max-width: 98vw !important;
+            width: 98vw !important;
+            font-size: 1rem !important;
+          }
+          .resume-preview-container {
+            height: 38vh !important;
+            min-height: 180px !important;
+            max-height: 320px !important;
+            overflow: auto !important;
+          }
+          .resume-modal-content h2 {
+            font-size: 1.2rem !important;
+          }
+          .resume-modal-content p {
+            font-size: 1rem !important;
+          }
+          .btn {
+            font-size: 1rem !important;
+            padding: 0.7rem 1.2rem !important;
+          }
+          .resume-preview-container iframe {
+            min-height: 180px !important;
+            height: 100% !important;
+            width: 100% !important;
+            display: block !important;
+          }
+        }
+      `}</style>
+      <div className="modal-content resume-modal-content" style={{
+        background: 'rgba(37, 99, 235, 0.7)', // theme blue with transparency
+        borderRadius: '12px',
+        padding: '2rem',
+        maxWidth: '600px',
+        width: '90vw',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+        position: 'relative',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center'
+      }}>
+        {/* Close Icon in top-right corner */}
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          style={{
+            position: 'absolute',
+            top: '1rem',
+            right: '1rem',
+            background: 'transparent',
+            border: 'none',
+            fontSize: '2.2rem',
+            color: '#e11d48', // vibrant red
+            cursor: 'pointer',
+            zIndex: 10,
+            transition: 'color 0.2s',
+            filter: 'drop-shadow(0 2px 6px rgba(225,29,72,0.3))'
+          }}
+          onMouseEnter={e => (e.currentTarget.style.color = '#be123c')}
+          onMouseLeave={e => (e.currentTarget.style.color = '#e11d48')}
+        >
+          <span style={{fontWeight: 'bold', textShadow: '0 2px 8px rgba(225,29,72,0.3)'}}>×</span>
         </button>
+        <h2 style={{ textAlign: 'center', width: '100%', marginBottom: '0.5rem' }}>Resume Preview</h2>
+        <p style={{ textAlign: 'center', width: '100%', marginBottom: '1rem' }}>View or download my resume below.</p>
+        <div className="resume-preview-container" style={{height: '60vh', width: '100%', marginBottom: '1rem'}}>
+          <iframe
+            src="./Sachin Resume.pdf"
+            title="Resume Preview"
+            width="100%"
+            height="100%"
+            style={{ border: '1px solid #ccc', borderRadius: '8px' }}
+            onError={(e) => {
+              const iframe = e.target as HTMLIFrameElement;
+              iframe.style.display = 'none';
+              const fallback = document.getElementById('resume-fallback');
+              if (fallback) fallback.style.display = 'block';
+            }}
+          />
+          <div id="resume-fallback" style={{display: 'none', color: 'red', textAlign: 'center', marginTop: '2rem', width: '100%'}}>
+            <span style={{ display: 'block', fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '0.5rem' }}>PDF preview failed to load.</span>
+            <span className="mobile-pdf-fallback" style={{display: 'block', marginTop: '1rem', color: '#333', fontSize: '1rem'}}>
+              {window.innerWidth <= 600 ? (
+                <>
+                  PDF preview is not supported on some mobile browsers.<br />
+                  <strong>Please use the button below to download and view the resume.</strong>
+                </>
+              ) : null}
+            </span>
+            <a href="./Sachin Resume.pdf" download="Sachin Resume.pdf" style={{color: '#2563eb', textDecoration: 'underline', fontWeight: 'bold', fontSize: '1.1rem', display: 'inline-block', marginTop: '1rem'}}>Download Resume</a>
+          </div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0.5rem' }}>
+          <a
+            href="./Sachin Resume.pdf"
+            download="Sachin Resume.pdf"
+            className="btn btn-primary-glow"
+            style={{
+              fontSize: '0.95rem',
+              padding: '0.5rem 1.2rem',
+              minWidth: '120px',
+              textAlign: 'center',
+              margin: 0,
+              borderRadius: '8px'
+            }}
+          >
+            Download Resume
+          </a>
+        </div>
       </div>
     </div>
   );
