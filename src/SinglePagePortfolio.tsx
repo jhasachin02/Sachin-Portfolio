@@ -1211,7 +1211,39 @@ const ExperienceSection: React.FC = () => {
       title: "Technical Workshops / Hackathons",
       category: "Educational Events",
       events: [
-        // Removed 'Web Development Bootcamp' event
+        // Removed 'Startup-X Ashoka University' event as requested
+        {
+          title: "Startup x Ashoka University",
+          image: "/Gallery/Startup Ashoka Ashoka University/1728501639997.jpg",
+          category: "Startup Hackathon",
+          date: "September 2024",
+          description: "Mentored teams and delivered sessions at Startup Ashoka, Ashoka University.",
+          gallery: [
+            "/Gallery/Startup Ashoka Ashoka University/1728501639997.jpg",
+            "/Gallery/Startup Ashoka Ashoka University/1728501642913.jpg",
+            "/Gallery/Startup Ashoka Ashoka University/1728501643045.jpg",
+            "/Gallery/Startup Ashoka Ashoka University/1728501643107.jpg",
+            "/Gallery/Startup Ashoka Ashoka University/1728501643320.jpg",
+            "/Gallery/Startup Ashoka Ashoka University/1728501643336.jpg",
+            "/Gallery/Startup Ashoka Ashoka University/1728501643369.jpg",
+            "/Gallery/Startup Ashoka Ashoka University/1728501643406.jpg"
+          ]
+        },
+        {
+          title: "Ton Bootcamp",
+          image: "/Gallery/Ton Bootcamp/1719050102383.jpg",
+          category: "Bootcamp",
+          date: "May 2024",
+          description: "Participated in Ton Bootcamp, hands-on blockchain and Web3 training.",
+          gallery: [
+            "/Gallery/Ton Bootcamp/1719050102383.jpg",
+            "/Gallery/Ton Bootcamp/1719086273123.jpg",
+            "/Gallery/Ton Bootcamp/1719086691304.jpg",
+            "/Gallery/Ton Bootcamp/1719094383873.jpg",
+            "/Gallery/Ton Bootcamp/1719094759341.jpg",
+            "/Gallery/Ton Bootcamp/1719146688773.jpg"
+          ]
+        },
         {
           title: "Infronix IIIT Delhi (Mentor)",
           image: "/Gallery/Infronix IIIT Delhi/1739909306187.jpg",
@@ -1281,7 +1313,7 @@ const ExperienceSection: React.FC = () => {
           title: "E Summit IIIT Delhi",
           image: "/Gallery/E Summit IIIT Delhi/1742729290093.jpg",
           category: "Summit",
-          date: "2025",
+          date: "March 2025",
           description: "Entrepreneurship summit participation",
           gallery: [
             "/Gallery/E Summit IIIT Delhi/1742729290093.jpg",
@@ -1351,6 +1383,24 @@ const ExperienceSection: React.FC = () => {
             "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/WhatsApp Image 2025-07-17 at 12.16.43_81c3ecad.jpg",
             "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/WhatsApp Image 2025-07-17 at 12.16.45_068622ee.jpg",
             "/Gallery/Community Event/Speaker Session at Kendriya Vidyalaya janakpuri/WhatsApp Image 2025-07-17 at 12.16.46_7da34887.jpg"
+          ]
+        },
+        {
+          title: "India Digital Summit (IDS) 2025 at Aerocity, Delhi",
+          image: "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182035897.jpg",
+          category: "Conference",
+          date: "2025",
+          description: "Attended India Digital Summit (IDS) 2025 at Aerocity, Delhi. Engaged with industry leaders and participated in digital innovation sessions.",
+          gallery: [
+            "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182035897.jpg",
+            "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182036027.jpg",
+            "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182036098.jpg",
+            "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182036358.jpg",
+            "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182037341.jpg",
+            "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182037501.jpg",
+            "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182037640.jpg",
+            "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182037681.jpg",
+            "/Gallery/India Digital Summit (IDS) 2025 at Aerocity, Delhi/1737182038394.jpg"
           ]
         }
       ]
