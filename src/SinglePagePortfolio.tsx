@@ -1367,10 +1367,7 @@ const ExperienceSection: React.FC = () => {
                 <h2 className="experience-title-main">
                   Professional Experience
                 </h2>
-                <p className="experience-subtitle">
-                  Building impactful solutions across diverse domains
-                </p>
-                <p className="experience-subtitle mobile-only">👆 Tap on any experience to expand details</p>
+                {/* Removed subtitle lines as requested */}
               </div>
             </div>
 
