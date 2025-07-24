@@ -728,6 +728,18 @@ const ProjectsSection: React.FC = () => {
 
   const otherProjects = [
     {
+      title: 'JSON-Schema-Builder',
+      description: 'A visual tool for building, editing, and validating JSON schemas. Features drag-and-drop UI, real-time schema preview, and export functionality for rapid API development.',
+      tech: [
+        { name: 'React', icon: <FaReact /> },
+        { name: 'TypeScript', icon: <SiTypescript /> },
+        { name: 'Vercel', icon: <SiVercel /> }
+      ],
+      liveLink: 'https://json-schema-builder-phi.vercel.app/',
+      codeLink: 'https://github.com/jhasachin02/JSON-Schema-Builder',
+      category: 'Web Tool'
+    },
+    {
       title: 'Churn Prediction Model',
       description: 'Built predictive models using Linear Regression, K-Neighbors, and Random Forest to forecast customer churn in banking. Optimized performance with ensemble methods using demographic and transactional data.',
       tech: [
@@ -736,9 +748,9 @@ const ProjectsSection: React.FC = () => {
         { name: 'Random Forest', icon: <FaPython /> },
         { name: 'Machine Learning', icon: <FaPython /> }
       ],
-      liveLink: '#',
-      codeLink: '#',
-      category: 'Data Science'
+      liveLink: 'https://github.com/jhasachin02/Churn-Prediction.git',
+      codeLink: 'https://github.com/jhasachin02/Churn-Prediction.git',
+      category: 'AI/ML'
     },
     {
       title: 'Portfolio Website',
@@ -749,10 +761,23 @@ const ProjectsSection: React.FC = () => {
         { name: 'Framer Motion', icon: <FaReact /> },
         { name: 'Vite', icon: <FaJs /> }
       ],
-      liveLink: '#',
-      codeLink: '#',
+      liveLink: 'https://sachinjha.me',
+      codeLink: 'https://github.com/jhasachin02/portfolio-.git',
       category: 'Web Development'
+    },
+    {
+      title: 'E-commerce-Fast-API',
+      description: 'A scalable e-commerce backend built using Python, FastAPI, and MongoDB. Features RESTful endpoints for product management, user authentication, and order processing.',
+      tech: [
+        { name: 'Python', icon: <FaPython /> },
+        { name: 'FastAPI', icon: <FaPython /> },
+        { name: 'MongoDB', icon: <SiMongodb /> }
+      ],
+      liveLink: 'https://e-commerce-fast-api-76pa.onrender.com/',
+      codeLink: 'https://github.com/jhasachin02/E-commerce-Fast-API',
+      category: 'Backend/API'
     }
+    
   ];
 
   return (
@@ -838,44 +863,67 @@ const ProjectsSection: React.FC = () => {
             {/* Other Projects */}
             <div className="other-projects-section">
               <h3 className="other-projects-title">Other Notable Projects</h3>
-              
-              <div className="other-projects-grid">
-                {otherProjects.map((project, index) => (
-                  <motion.div
-                    key={project.title}
-                    className="project-card-professional mini"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                    whileHover={{ y: -3 }}
-                  >
-                    <div className="mini-project-header">
-                      <div className="mini-project-info">
-                        <h4 className="mini-project-title">{project.title}</h4>
-                        <span className="mini-project-category">{project.category}</span>
+              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+                <button
+                  style={{ marginRight: '1rem', fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer' }}
+                  onClick={() => {
+                    const container = document.getElementById('other-projects-scroll');
+                    if (container) container.scrollLeft -= 300;
+                  }}
+                  aria-label="Scroll Left"
+                >
+                  &#8592;
+                </button>
+                <div
+                  id="other-projects-scroll"
+                  style={{ overflowX: 'auto', display: 'flex', flexDirection: 'row', gap: '1.5rem', width: '100%' }}
+                >
+                  {otherProjects.map((project, index) => (
+                    <motion.div
+                      key={project.title}
+                      className="project-card-professional mini"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                      whileHover={{ y: -3 }}
+                      style={{ minWidth: '350px', maxWidth: '400px' }}
+                    >
+                      <div className="mini-project-header">
+                        <div className="mini-project-info">
+                          <h4 className="mini-project-title">{project.title}</h4>
+                          <span className="mini-project-category">{project.category}</span>
+                        </div>
+                        <div className="mini-project-actions">
+                          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="mini-project-link" title="View Live Project">
+                            <FaEye />
+                          </a>
+                          <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="mini-project-link" title="View Source Code">
+                            <FaGithub />
+                          </a>
+                        </div>
                       </div>
-                      <div className="mini-project-actions">
-                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="mini-project-link" title="View Live Project">
-                          <FaEye />
-                        </a>
-                        <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="mini-project-link" title="View Source Code">
-                          <FaGithub />
-                        </a>
+                      <p className="mini-project-description">{project.description}</p>
+                      <div className="mini-project-tech">
+                        {project.tech.map((tech) => (
+                          <span key={tech.name} className="mini-tech-tag">
+                            <span className="mini-tech-icon">{tech.icon}</span>
+                            {tech.name}
+                          </span>
+                        ))}
                       </div>
-                    </div>
-                    
-                    <p className="mini-project-description">{project.description}</p>
-                    
-                    <div className="mini-project-tech">
-                      {project.tech.map((tech) => (
-                        <span key={tech.name} className="mini-tech-tag">
-                          <span className="mini-tech-icon">{tech.icon}</span>
-                          {tech.name}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
+                <button
+                  style={{ marginLeft: '1rem', fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer' }}
+                  onClick={() => {
+                    const container = document.getElementById('other-projects-scroll');
+                    if (container) container.scrollLeft += 300;
+                  }}
+                  aria-label="Scroll Right"
+                >
+                  &#8594;
+                </button>
               </div>
             </div>
           </motion.div>
