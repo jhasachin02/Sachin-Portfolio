@@ -776,8 +776,19 @@ const ProjectsSection: React.FC = () => {
       liveLink: 'https://e-commerce-fast-api-76pa.onrender.com/',
       codeLink: 'https://github.com/jhasachin02/E-commerce-Fast-API',
       category: 'Backend/API'
+    },
+    {
+      title: 'Invoice Generator',
+      description: 'A simple and efficient web app to generate invoices instantly. Features customizable fields, PDF export, and a clean, user-friendly interface for freelancers and small businesses.',
+      tech: [
+        { name: 'React', icon: <FaReact /> },
+        { name: 'TypeScript', icon: <SiTypescript /> },
+        { name: 'Netlify', icon: <SiNetlify /> }
+      ],
+      liveLink: 'https://invoice-generator02.netlify.app/',
+      codeLink: 'https://github.com/jhasachin02/invoice-generator',
+      category: 'Web Tool'
     }
-    
   ];
 
   return (
