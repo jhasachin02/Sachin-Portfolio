@@ -788,6 +788,18 @@ const ProjectsSection: React.FC = () => {
       liveLink: 'https://invoice-generator02.netlify.app/',
       codeLink: 'https://github.com/jhasachin02/invoice-generator',
       category: 'Web Tool'
+    },
+    {
+      title: 'Snake Game',
+      description: 'A classic Snake game built with React and TypeScript. Features smooth controls, score tracking, and a responsive design for desktop and mobile play.',
+      tech: [
+        { name: 'React', icon: <FaReact /> },
+        { name: 'TypeScript', icon: <SiTypescript /> },
+        { name: 'Netlify', icon: <SiNetlify /> }
+      ],
+      liveLink: 'https://snake-game02.netlify.app/',
+      codeLink: 'https://github.com/jhasachin02/snake-game',
+      category: 'Web Game'
     }
   ];
 
