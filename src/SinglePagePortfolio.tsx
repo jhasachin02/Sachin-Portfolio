@@ -710,6 +710,21 @@ const ProjectsSection: React.FC = () => {
       category: 'Mobile App'
     },
     {
+      title: 'Resume ATS Tracker',
+      description: 'A web application that analyzes your resume against job descriptions using advanced ATS algorithms. Get instant feedback, keyword suggestions, and actionable insights to optimize your resume for better job matching.',
+      tech: [
+        { name: 'React', icon: <FaReact /> },
+        { name: 'TypeScript', icon: <SiTypescript /> },
+        { name: 'Node.js', icon: <FaNodeJs /> },
+        { name: 'Netlify', icon: <SiNetlify /> }
+      ],
+      image: '📄',
+      liveLink: 'https://resume-ats-tracker.netlify.app/',
+      codeLink: 'https://github.com/jhasachin02/Resume-ATS-Tracker.git',
+      status: 'Featured',
+      category: 'Web App'
+    },
+    {
       title: 'AI Image Caption Generator',
       description: 'Developed a deep learning system using PyTorch with CNN-LSTM + attention architecture to generate meaningful captions for images. Built full ML pipeline with custom data loaders, training loops, and deployed via Gradio web app.',
       tech: [
@@ -834,61 +849,122 @@ const ProjectsSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Featured Projects */}
-            <div className="featured-projects-grid">
-              {featuredProjects.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  className="project-card-professional featured"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                >
-                  <div className="project-image-professional">
-                    <span className="project-emoji-large">{project.image}</span>
-                    <div className="project-status-badge">
-                      <span className="status-dot"></span>
-                      {project.status}
-                    </div>
-                    <div className="project-category-badge">
-                      {project.category}
-                    </div>
-                  </div>
-                  
-                  <div className="project-content-professional">
-                    <div className="project-header-professional">
-                      <h3 className="project-title-professional">{project.title}</h3>
-                      <div className="project-actions">
-                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link-btn" title="View Live Project">
+            {/* Featured Projects - horizontal scrollable row */}
+            <div
+              className="featured-projects-scroll-wrapper"
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                width: '100%',
+                marginBottom: '2rem',
+              }}
+            >
+              <button
+                className="scroll-btn"
+                style={{ marginRight: '1rem', fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer', display: 'block' }}
+                onClick={() => {
+                  const container = document.getElementById('featured-projects-scroll');
+                  if (container) container.scrollLeft -= 300;
+                }}
+                aria-label="Scroll Left"
+              >
+                &#8592;
+              </button>
+              <div
+                id="featured-projects-scroll"
+                className="featured-projects-scroll"
+                style={{
+                  overflowX: 'auto',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: '1.5rem',
+                  width: '100%',
+                  scrollSnapType: 'x mandatory',
+                  WebkitOverflowScrolling: 'touch',
+                  paddingBottom: '0.5rem',
+                }}
+              >
+                {featuredProjects.map((project, index) => (
+                  <motion.div
+                    key={project.title}
+                    className="project-card-professional mini"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ y: -3 }}
+                    style={{
+                      minWidth: '320px',
+                      maxWidth: '400px',
+                      width: '90vw',
+                      scrollSnapAlign: 'start',
+                      boxSizing: 'border-box',
+                    }}
+                  >
+                    <div className="mini-project-header" style={{ flexDirection: 'column', alignItems: 'flex-start', display: 'flex' }}>
+                      <motion.div
+                        className="mini-project-img-anim"
+                        initial={{ scale: 0.8, rotate: -8, boxShadow: '0 0 0 0 rgba(0,0,0,0)' }}
+                        animate={{ scale: 1, rotate: 0, boxShadow: '0 8px 32px rgba(79,172,254,0.10)' }}
+                        transition={{ duration: 0.6, delay: 0.1 * index, type: 'spring', stiffness: 180 }}
+                        whileHover={{ scale: 1.08, rotate: 4, boxShadow: '0 12px 32px rgba(79,172,254,0.18)' }}
+                        style={{ display: 'block', margin: '0 auto 0.5rem auto', borderRadius: '50%', background: 'linear-gradient(120deg,#e0e7ef 60%,#f5f7fa 100%)', padding: '0.3rem 0.6rem', fontSize: '2.3rem', boxShadow: '0 2px 8px rgba(79,172,254,0.08)' }}
+                      >
+                        {project.image}
+                      </motion.div>
+                      <div className="mini-project-info" style={{ textAlign: 'center', width: '100%' }}>
+                        <h4 className="mini-project-title">{project.title}</h4>
+                        <span className="mini-project-category">{project.category}</span>
+                      </div>
+                      <div className="mini-project-actions" style={{ marginTop: '0.3rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="mini-project-link" title="View Live Project">
                           <FaEye />
                         </a>
-                        <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="project-link-btn" title="View Source Code">
+                        <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="mini-project-link" title="View Source Code">
                           <FaGithub />
                         </a>
                       </div>
                     </div>
-                    
-                    <p className="project-description-professional">{project.description}</p>
-                    
-                    <div className="project-tech-professional">
+                    <p className="mini-project-description">{project.description}</p>
+                    <div className="mini-project-tech">
                       {project.tech.map((tech) => (
-                        <span key={tech.name} className="tech-tag-professional">
-                          <span className="tech-icon-professional">{tech.icon}</span>
+                        <span key={tech.name} className="mini-tech-tag">
+                          <span className="mini-tech-icon">{tech.icon}</span>
                           {tech.name}
                         </span>
                       ))}
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
+              <button
+                className="scroll-btn"
+                style={{ marginLeft: '1rem', fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer', display: 'block' }}
+                onClick={() => {
+                  const container = document.getElementById('featured-projects-scroll');
+                  if (container) container.scrollLeft += 300;
+                }}
+                aria-label="Scroll Right"
+              >
+                &#8594;
+              </button>
             </div>
 
             {/* Other Projects */}
             <div className="other-projects-section">
               <h3 className="other-projects-title">Other Notable Projects</h3>
-              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+              <div
+                className="other-projects-scroll-wrapper"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  width: '100%',
+                }}
+              >
                 <button
-                  style={{ marginRight: '1rem', fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer' }}
+                  className="scroll-btn"
+                  style={{ marginRight: '1rem', fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer', display: 'block' }}
                   onClick={() => {
                     const container = document.getElementById('other-projects-scroll');
                     if (container) container.scrollLeft -= 300;
@@ -899,7 +975,17 @@ const ProjectsSection: React.FC = () => {
                 </button>
                 <div
                   id="other-projects-scroll"
-                  style={{ overflowX: 'auto', display: 'flex', flexDirection: 'row', gap: '1.5rem', width: '100%' }}
+                  className="other-projects-scroll"
+                  style={{
+                    overflowX: 'auto',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: '1.5rem',
+                    width: '100%',
+                    scrollSnapType: 'x mandatory',
+                    WebkitOverflowScrolling: 'touch',
+                    paddingBottom: '0.5rem',
+                  }}
                 >
                   {otherProjects.map((project, index) => (
                     <motion.div
@@ -909,14 +995,32 @@ const ProjectsSection: React.FC = () => {
                       animate={inView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
                       whileHover={{ y: -3 }}
-                      style={{ minWidth: '350px', maxWidth: '400px' }}
+                      style={{
+                        minWidth: '320px',
+                        maxWidth: '400px',
+                        width: '90vw',
+                        scrollSnapAlign: 'start',
+                        boxSizing: 'border-box',
+                      }}
                     >
-                      <div className="mini-project-header">
-                        <div className="mini-project-info">
+                      <div className="mini-project-header" style={{ flexDirection: 'column', alignItems: 'flex-start', display: 'flex' }}>
+                        {project.image && (
+                          <motion.div
+                            className="mini-project-img-anim"
+                            initial={{ scale: 0.8, rotate: -8, boxShadow: '0 0 0 0 rgba(0,0,0,0)' }}
+                            animate={{ scale: 1, rotate: 0, boxShadow: '0 8px 32px rgba(79,172,254,0.10)' }}
+                            transition={{ duration: 0.6, delay: 0.1 * index, type: 'spring', stiffness: 180 }}
+                            whileHover={{ scale: 1.08, rotate: 4, boxShadow: '0 12px 32px rgba(79,172,254,0.18)' }}
+                            style={{ display: 'block', margin: '0 auto 0.5rem auto', borderRadius: '50%', background: 'linear-gradient(120deg,#e0e7ef 60%,#f5f7fa 100%)', padding: '0.3rem 0.6rem', fontSize: '2.3rem', boxShadow: '0 2px 8px rgba(79,172,254,0.08)' }}
+                          >
+                            {project.image}
+                          </motion.div>
+                        )}
+                        <div className="mini-project-info" style={{ textAlign: 'center', width: '100%' }}>
                           <h4 className="mini-project-title">{project.title}</h4>
                           <span className="mini-project-category">{project.category}</span>
                         </div>
-                        <div className="mini-project-actions">
+                        <div className="mini-project-actions" style={{ marginTop: '0.3rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
                           <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="mini-project-link" title="View Live Project">
                             <FaEye />
                           </a>
@@ -938,7 +1042,8 @@ const ProjectsSection: React.FC = () => {
                   ))}
                 </div>
                 <button
-                  style={{ marginLeft: '1rem', fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer' }}
+                  className="scroll-btn"
+                  style={{ marginLeft: '1rem', fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer', display: 'block' }}
                   onClick={() => {
                     const container = document.getElementById('other-projects-scroll');
                     if (container) container.scrollLeft += 300;
