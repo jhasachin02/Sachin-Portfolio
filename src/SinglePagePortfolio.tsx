@@ -1969,7 +1969,10 @@ const ExperienceSection: React.FC = () => {
 
 // Contact Section Component
 const ContactSection: React.FC = () => {
-  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: false });
+  const [ref, inViewRaw] = useInView({ threshold: 0.3, triggerOnce: false });
+  // On mobile, always show content (inView = true)
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 600;
+  const inView = isMobile ? true : inViewRaw;
 
   return (
     <section id="contact" className="contact-section" ref={ref}>
