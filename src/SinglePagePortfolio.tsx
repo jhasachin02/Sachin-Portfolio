@@ -755,6 +755,23 @@ const ProjectsSection: React.FC = () => {
       status: 'Featured',
       category: 'AI/ML'
     }
+    ,
+    {
+      title: 'Portfolio Builder Web App',
+      description: 'A modern web application for building and customizing personal portfolios with a user-friendly interface, authentication, and live preview features.',
+      tech: [
+        { name: 'React', icon: <FaReact /> },
+        { name: 'TypeScript', icon: <SiTypescript /> },
+        { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+        { name: 'Vite', icon: <FaJs /> },
+        { name: 'Firebase', icon: <FaNodeJs /> }
+      ],
+      image: '🧑‍💻',
+      liveLink: 'https://portfolio-builderapp.netlify.app/',
+      codeLink: 'https://github.com/jhasachin02/Portfolio-Builder.git',
+      status: 'Featured',
+      category: 'Web App'
+    }
   ];
 
   const otherProjects = [
