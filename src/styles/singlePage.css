@@ -1,46 +1,4 @@
-@media (max-width: 600px) {
-  .contact-unified-box * {
-    opacity: 1 !important;
-    color: #fff !important;
-    visibility: visible !important;
-    filter: none !important;
-  }
-  .contact-section {
-    padding: 40px 0 80px 0 !important;
-    border: none !important;
-  }
-  .contact-unified-box {
-    padding: 1.2rem 0.5rem !important;
-    margin: 0 0.5rem !important;
-    border-radius: 16px !important;
-    max-width: 100vw !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .contact-header {
-    margin-bottom: 2rem !important;
-  }
-  .contact-title-main {
-    font-size: 2rem !important;
-  }
-  .contact-subtitle {
-    font-size: 1.1rem !important;
-  }
-  .contact-content-wrapper {
-    gap: 2rem !important;
-    padding: 0 !important;
-    min-width: 0;
-  }
-  .contact-info-section, .contact-form-section {
-    padding: 1rem 0 !important;
-  }
-  .contact-info-item {
-    padding: 1.2rem 0.5rem !important;
-  }
-  .contact-form {
-    padding: 1.2rem !important;
-  }
-}
+/* Removed duplicate mobile Contact section overrides for clarity */
 @media (max-width: 600px) {
   .contact-section {
     padding: 32px 0 !important;
@@ -131,67 +89,7 @@
     border: 1px solid #fff !important;
   }
 }
-/* Force Contact section to stack and fill width on small screens */
-@media (max-width: 600px) {
-  .contact-section {
-    padding: 32px 0 !important;
-    min-width: 0 !important;
-    overflow-x: hidden !important;
-  }
-  /* Removed debug forced visibility for .contact-unified-box * */
-    box-sizing: border-box !important;
-  }
-  .contact-content-wrapper {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.7rem !important;
-    padding: 0 !important;
-    min-width: 0 !important;
-    width: 100% !important;
-  }
-  .contact-info-section, .contact-form-section {
-    padding: 0.2rem 0 !important;
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-  .contact-info-grid {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-  .contact-info-item {
-    flex-direction: column !important;
-    text-align: center !important;
-    gap: 0.5rem !important;
-    padding: 0.7rem 0.2rem !important;
-    min-width: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .contact-info-content h4 {
-    font-size: 1rem !important;
-  }
-  .contact-form {
-    padding: 0.7rem !important;
-    min-width: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .form-row {
-    grid-template-columns: 1fr !important;
-    gap: 0.3rem !important;
-    width: 100% !important;
-  }
-  .form-group {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-  /* .contact-form-title mobile font-size override removed for debug */
-  .contact-submit-btn {
-    font-size: 1rem !important;
-    padding: 0.8rem 1rem !important;
-    width: 100% !important;
-  }
-}
+/* Removed redundant second mobile Contact section override block */
 /* Extra mobile stability for Contact section */
 @media (max-width: 480px) {
   .contact-section {
