@@ -50,6 +50,7 @@ import {
   SiVercel, 
   SiNetlify,
   SiSupabase,
+  SiFirebase,
   SiCplusplus
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
@@ -764,7 +765,7 @@ const ProjectsSection: React.FC = () => {
         { name: 'TypeScript', icon: <SiTypescript /> },
         { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
         { name: 'Vite', icon: <FaJs /> },
-        { name: 'Firebase', icon: <FaNodeJs /> }
+        { name: 'Firebase', icon: <SiFirebase /> }
       ],
       image: '🧑‍💻',
       liveLink: 'https://portfolio-builderapp.netlify.app/',
