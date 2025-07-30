@@ -49,6 +49,7 @@ import {
   SiExpress, 
   SiVercel, 
   SiNetlify,
+  SiSupabase,
   SiCplusplus
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
@@ -723,6 +724,21 @@ const ProjectsSection: React.FC = () => {
       codeLink: 'https://github.com/jhasachin02/Resume-ATS-Tracker.git',
       status: 'Featured',
       category: 'Web App'
+    },
+    {
+      title: 'Leave Management System',
+      description: 'A full stack leave management app using React, Node.js, and Supabase for database. Features leave request, approval workflow, and real-time status tracking. Deployed on Netlify.',
+      tech: [
+        { name: 'React', icon: <FaReact /> },
+        { name: 'Node.js', icon: <FaNodeJs /> },
+        { name: 'Supabase', icon: <SiSupabase /> },
+        { name: 'Netlify', icon: <SiNetlify /> }
+      ],
+      image: '🗂️',
+      liveLink: 'https://leave-spark.netlify.app/',
+      codeLink: 'https://github.com/jhasachin02/leave-spark',
+      status: 'Featured',
+      category: 'Full Stack App'
     },
     {
       title: 'AI Image Caption Generator',
