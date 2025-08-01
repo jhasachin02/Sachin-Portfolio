@@ -777,6 +777,18 @@ const ProjectsSection: React.FC = () => {
 
   const otherProjects = [
     {
+      title: 'Finance-Tracker',
+      description: 'A web application to track personal finances, manage budgets, and visualize spending habits, helping users to achieve their financial goals.',
+      tech: [
+        { name: 'React', icon: <FaReact /> },
+        { name: 'TypeScript', icon: <SiTypescript /> },
+        { name: 'Netlify', icon: <SiNetlify /> }
+      ],
+      liveLink: 'https://finance-track02.netlify.app/',
+      codeLink: 'https://github.com/jhasachin02/Finance-Tracker',
+      category: 'Web App'
+    },
+    {
       title: 'JSON-Schema-Builder',
       description: 'A visual tool for building, editing, and validating JSON schemas. Features drag-and-drop UI, real-time schema preview, and export functionality for rapid API development.',
       tech: [
@@ -795,10 +807,12 @@ const ProjectsSection: React.FC = () => {
         { name: 'Python', icon: <FaPython /> },
         { name: 'Scikit-learn', icon: <FaPython /> },
         { name: 'Random Forest', icon: <FaPython /> },
-        { name: 'Machine Learning', icon: <FaPython /> }
+        { name: 'Machine Learning', icon: <FaPython /> },
+        { name: 'React', icon: <FaReact /> },
+        { name: 'Tailwind CSS', icon: <SiTailwindcss /> }
       ],
-      liveLink: 'https://github.com/jhasachin02/Churn-Prediction.git',
-      codeLink: 'https://github.com/jhasachin02/Churn-Prediction.git',
+      liveLink: 'https://churn-guard01.netlify.app',
+      codeLink: 'https://github.com/jhasachin02/Churn-Prediction',
       category: 'AI/ML'
     },
     {
@@ -2160,7 +2174,16 @@ const ContactSection: React.FC = () => {
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <form className="contact-form">
+                <form className="contact-form" onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = e.currentTarget;
+                  const name = form.name.value;
+                  const email = form.email.value;
+                  const subject = form.subject.value;
+                  const message = form.message.value;
+                  const mailto = `mailto:jhasachin1307@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+                  window.location.href = mailto;
+                }}>
                   <h3 className="contact-form-title">Send a Message</h3>
                   <p className="contact-form-description">
                     Have a project in mind? Let's discuss how we can work together.
