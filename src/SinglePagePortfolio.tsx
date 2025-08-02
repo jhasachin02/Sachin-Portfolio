@@ -1117,6 +1117,134 @@ const ExperienceSection: React.FC = () => {
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
   const [expandedAchievements, setExpandedAchievements] = useState<number | null>(null);
   const [expandedCertifications, setExpandedCertifications] = useState<number | null>(null);
+
+  // Timeline animation useEffect with IntersectionObserver
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.5, // Item is considered visible when 50% in viewport
+      rootMargin: '0px 0px -20% 0px' // Trigger slightly before item is fully visible
+    };
+
+    const timelineContainers = document.querySelectorAll('.timeline-container');
+    
+    timelineContainers.forEach((container) => {
+      const timelineLine = container.querySelector('.timeline-line') as HTMLElement;
+      const timelineItems = Array.from(container.querySelectorAll('.timeline-item'));
+      
+      if (!timelineLine || timelineItems.length === 0) return;
+
+      // Set initial line position and height
+      timelineLine.style.top = '0px';
+      timelineLine.style.height = '0px';
+      
+      let visibleItems = new Set<Element>();
+
+      const updateTimeline = () => {
+        if (visibleItems.size > 0) {
+          // Find first and last visible items
+          let firstVisibleIndex = timelineItems.length;
+          let lastVisibleIndex = -1;
+          
+          timelineItems.forEach((item, index) => {
+            if (visibleItems.has(item)) {
+              firstVisibleIndex = Math.min(firstVisibleIndex, index);
+              lastVisibleIndex = Math.max(lastVisibleIndex, index);
+            }
+          });
+          
+          if (firstVisibleIndex < timelineItems.length && lastVisibleIndex >= 0) {
+            const firstItem = timelineItems[firstVisibleIndex];
+            const lastItem = timelineItems[lastVisibleIndex];
+            
+            const firstMarker = firstItem.querySelector('.timeline-marker-professional, .timeline-marker-leadership');
+            const lastMarker = lastItem.querySelector('.timeline-marker-professional, .timeline-marker-leadership');
+            
+            if (firstMarker && lastMarker) {
+              const containerRect = container.getBoundingClientRect();
+              const firstMarkerRect = firstMarker.getBoundingClientRect();
+              const lastMarkerRect = lastMarker.getBoundingClientRect();
+              
+              // Calculate centers of the markers relative to container
+              const firstMarkerCenter = firstMarkerRect.top + firstMarkerRect.height / 2 - containerRect.top;
+              const lastMarkerCenter = lastMarkerRect.top + lastMarkerRect.height / 2 - containerRect.top;
+              
+              // If there's only one visible item, show just a small line segment
+              if (firstVisibleIndex === lastVisibleIndex) {
+                const lineTop = Math.max(0, firstMarkerCenter - 10);
+                const lineHeight = 20; // Small line for single item
+                
+                timelineLine.style.top = lineTop + 'px';
+                timelineLine.style.height = lineHeight + 'px';
+              } else {
+                // Multiple items visible - line from first to last marker center
+                const lineTop = Math.max(0, firstMarkerCenter);
+                const lineHeight = Math.max(0, lastMarkerCenter - firstMarkerCenter);
+                
+                timelineLine.style.top = lineTop + 'px';
+                timelineLine.style.height = lineHeight + 'px';
+              }
+            }
+          }
+        } else {
+          // No items visible, reset line
+          timelineLine.style.top = '0px';
+          timelineLine.style.height = '0px';
+        }
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            visibleItems.add(entry.target);
+            // Add visual class for enhanced styling
+            entry.target.classList.add('in-view');
+          } else {
+            visibleItems.delete(entry.target);
+            entry.target.classList.remove('in-view');
+          }
+        });
+        
+        // Update timeline after processing all entries
+        updateTimeline();
+      }, observerOptions);
+
+      // Observe all timeline items
+      timelineItems.forEach(item => observer.observe(item));
+      
+      // Add scroll and resize listeners for dynamic updates
+      const handleUpdate = () => {
+        requestAnimationFrame(updateTimeline);
+      };
+      
+      window.addEventListener('scroll', handleUpdate, { passive: true });
+      window.addEventListener('resize', handleUpdate, { passive: true });
+      
+      // Store cleanup functions
+      (container as any)._timelineObserver = observer;
+      (container as any)._timelineCleanup = () => {
+        window.removeEventListener('scroll', handleUpdate);
+        window.removeEventListener('resize', handleUpdate);
+      };
+    });
+
+    // Cleanup function
+    return () => {
+      timelineContainers.forEach(container => {
+        const observer = (container as any)._timelineObserver;
+        const cleanup = (container as any)._timelineCleanup;
+        
+        if (observer) {
+          observer.disconnect();
+          delete (container as any)._timelineObserver;
+        }
+        
+        if (cleanup) {
+          cleanup();
+          delete (container as any)._timelineCleanup;
+        }
+      });
+    };
+  }, []);
   const [expandedEventGallery, setExpandedEventGallery] = useState<number | null>(null);
   const [expandedEventItem, setExpandedEventItem] = useState<string | null>(null);
 
@@ -1598,9 +1726,10 @@ const ExperienceSection: React.FC = () => {
             </div>
 
             {/* Professional Experience Timeline */}
-            <div className="timeline-professional">
+            <div className="timeline-professional timeline-container">
+              <div className="timeline-line"></div>
               {experiences.map((exp, index) => (
-                <div key={index} className="timeline-item-professional">
+                <div key={index} className="timeline-item timeline-item-professional">
                   <div className="timeline-marker-professional"></div>
                   <div 
                     className={`timeline-content-professional ${expandedExperience === index ? 'expanded' : ''}`}
@@ -1656,9 +1785,10 @@ const ExperienceSection: React.FC = () => {
             <div className="leadership-section">
               <h3 className="leadership-title">Leadership Positions</h3>
               
-              <div className="timeline-leadership">
+              <div className="timeline-leadership timeline-container">
+                <div className="timeline-line"></div>
                 {leadershipPositions.map((position, index) => (
-                  <div key={index} className="timeline-item-leadership">
+                  <div key={index} className="timeline-item timeline-item-leadership">
                     <div className="timeline-marker-leadership"></div>
                     <div 
                       className={`timeline-content-leadership ${expandedLeadership === index ? 'expanded' : ''}`}
